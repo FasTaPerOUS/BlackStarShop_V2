@@ -24,6 +24,8 @@ enum PurchaseInfoKeys: String, CaseIterable {
 
 struct PurchaseInfo {
     
+    //MARK: - Methods
+    
     func updateUserInfo(str: String, key: PurchaseInfoKeys) {
         UserDefaults.standard.set(str, forKey: key.rawValue)
     }

@@ -10,6 +10,8 @@ import UIKit
 
 final class PurchaseView: UIView {
     
+    //MARK: - Dependencies
+    
     weak var viewController: PurchaseViewController?
     
     //MARK: - UI
@@ -110,6 +112,8 @@ final class PurchaseView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Private methods
     
     private func setNavigationBarTitle(str: String) {
         viewController?.navigationController?.navigationItem.title = str
@@ -286,10 +290,14 @@ final class PurchaseView: UIView {
         viewController?.showAlert()
     }
     
+    //MARK: - Methods
+    
     func updateCityTextField(str: String) {
         cityField.textField.text = str
     }
 }
+
+//MARK: - UIStackView extension
 
 extension UIStackView {
 

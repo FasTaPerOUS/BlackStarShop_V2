@@ -79,6 +79,8 @@ final class InfoField: UIView {
             a.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
+
+    //MARK: - Methods
     
     func selectWrongTextField() {
         a.backgroundColor = .systemRed

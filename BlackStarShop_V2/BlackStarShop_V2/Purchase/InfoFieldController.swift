@@ -14,12 +14,18 @@ protocol InfoFieldCheckProtocol {
 
 class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
     
+    //MARK: - Dependencies
+    
     var myView: InfoField?
+    
+    //MARK: - Properties
     
     var labelText = ""
     var textFieldPlaceholder = ""
     var pattern = ""
     var checker: (() -> Bool)?
+    
+    //MARK: - Init
     
     init(type: InfoFieldType) {
         super.init(nibName: nil, bundle: nil)
@@ -30,6 +36,8 @@ class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
         fatalError("init(coder:) has not been implemented")
     }
 
+    //MARK: - Private methods
+    
     private func setupPropertiesAndChecker(type: InfoFieldType) {
         switch type {
         case .name:
@@ -67,6 +75,7 @@ class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
     private func nameCheck() -> Bool {
         return isCorrectUsingReg()
     }
+    
     private func emailCheck() -> Bool {
         guard let check = myView?.textField.text?.contains("@") else {
             myView?.selectWrongTextField()
@@ -79,30 +88,39 @@ class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
         myView?.deselectWrongTextField()
         return true
     }
+    
     private func phoneCheck() -> Bool {
         return isCorrectUsingReg()
     }
+    
     private func cityCheck() -> Bool {
         return true
     }
+    
     private func streetCheck() -> Bool {
         return true
     }
+    
     private func houseCheck() -> Bool {
         return isCorrectUsingReg()
     }
+    
     private func buildingCheck() -> Bool {
         return true
     }
+    
     private func flatCheck() -> Bool {
         return true
     }
+    
     private func floorCheck() -> Bool {
         return true
     }
+    
     private func entranceCheck() -> Bool {
         return true
     }
+    
     private func codeOfEntranceCheck() -> Bool {
         return true
     }
@@ -124,6 +142,8 @@ class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
         return true
     }
 }
+
+//MARK: - RegularChecker
 
 extension String {
     func matches(_ regex: String) -> Bool {
