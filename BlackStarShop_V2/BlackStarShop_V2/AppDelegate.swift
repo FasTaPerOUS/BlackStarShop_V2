@@ -15,7 +15,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: PurchaseViewController())
+        
+        UINavigationBar.appearance().isTranslucent = false
+        
+        let tabBarController = UITabBarController()
+        let firstController = CategoriesViewController()
+        firstController.title = "Категории"
+//        firstController.navigationController?.navigationBar.backgroundColor = .mainColor
+//        UINavigationBarAppearance().configureWithOpaqueBackground()
+//        UINavigationBarAppearance().configureWithTransparentBackground()
+//        firstController.navigationController?.navigationBar.isTranslucent = false
+//        firstController.navigationController?.navigationBar.shadowImage = UIImage()
+//        firstController.navigationController?.navigationBar.alpha = 1
+//        firstController.navigationController?.view.backgroundColor = .mainColor
+//        firstController.navigationController?.navigationBar.backgroundColor = .mainColor
+        let firstControllerForTabBarController = UINavigationController(rootViewController: firstController)
+        firstControllerForTabBarController.title = "Магазин"
+        tabBarController.viewControllers = [firstControllerForTabBarController]
+//        tabBarController.tabBar.barTintColor = .mainColor
+//        tabBarController.tabBar.alpha = 1
+//        tabBarController.tabBar.trans
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         return true
     }
