@@ -57,6 +57,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C5951F126D1B45E005B03A7 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */,
+				2C529ECB26CEB830000EE40C /* CategoryTableView.swift */,
+				2C529ECF26CEBF7E000EE40C /* CategoryTableViewCell.swift */,
+				2C529EC726CEB6BC000EE40C /* CategoryModel.swift */,
+				2C5951F226D1B46B005B03A7 /* Categories */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		2C5951F226D1B46B005B03A7 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2C529EC326CEB61B000EE40C /* CategoriesLoader.swift */,
+				2C529EC926CEB746000EE40C /* CategoriesViewController.swift */,
+				2C529ECD26CEBC70000EE40C /* CategoriesView.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		2C5AC32226B1BF6A00EFFDB0 = {
 			isa = PBXGroup;
 			children = (
@@ -82,13 +104,7 @@
 				2C5AC33C26B1BF6D00EFFDB0 /* Info.plist */,
 				2CC2C20C26C69E1A0053BD47 /* Purchase */,
 				2C529EC126CEB5F4000EE40C /* GlobalVars.swift */,
-				2C529EC326CEB61B000EE40C /* CategoriesLoader.swift */,
-				2C529EC726CEB6BC000EE40C /* CategoryModel.swift */,
-				2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */,
-				2C529EC926CEB746000EE40C /* CategoriesViewController.swift */,
-				2C529ECB26CEB830000EE40C /* CategoryTableView.swift */,
-				2C529ECD26CEBC70000EE40C /* CategoriesView.swift */,
-				2C529ECF26CEBF7E000EE40C /* CategoryTableViewCell.swift */,
+				2C5951F126D1B45E005B03A7 /* Categories */,
 			);
 			path = BlackStarShop_V2;
 			sourceTree = "<group>";
