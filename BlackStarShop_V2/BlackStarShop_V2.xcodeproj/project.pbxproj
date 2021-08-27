@@ -23,6 +23,9 @@
 		2C5AC34D26B1DF4D00EFFDB0 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */; };
 		2C5E1F2D26B4784500925D3B /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */; };
 		2C6320AB26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */; };
+		2CC336D626D3D8B000FA85FC /* SubCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */; };
+		2CC336D826D4016700FA85FC /* SubCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D726D4016700FA85FC /* SubCategoriesView.swift */; };
+		2CC336DA26D40D3D00FA85FC /* SubCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoField.swift; sourceTree = "<group>"; };
 		2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInfoFromCategoriesToTableViewProtocol.swift; sourceTree = "<group>"; };
+		2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesViewController.swift; sourceTree = "<group>"; };
+		2CC336D726D4016700FA85FC /* SubCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesView.swift; sourceTree = "<group>"; };
+		2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,7 @@
 				2C529ECF26CEBF7E000EE40C /* CategoryTableViewCell.swift */,
 				2C529EC726CEB6BC000EE40C /* CategoryModel.swift */,
 				2C5951F226D1B46B005B03A7 /* Categories */,
+				2CC336D426D3D85E00FA85FC /* SubCategories */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -127,6 +134,16 @@
 			children = (
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		2CC336D426D3D85E00FA85FC /* SubCategories */ = {
+			isa = PBXGroup;
+			children = (
+				2CC336D726D4016700FA85FC /* SubCategoriesView.swift */,
+				2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */,
+				2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */,
+			);
+			path = SubCategories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,10 +224,13 @@
 				2C6320AB26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift in Sources */,
 				2C529EC226CEB5F4000EE40C /* GlobalVars.swift in Sources */,
 				2C529ECC26CEB830000EE40C /* CategoryTableView.swift in Sources */,
+				2CC336DA26D40D3D00FA85FC /* SubCategoriesModel.swift in Sources */,
+				2CC336D626D3D8B000FA85FC /* SubCategoriesViewController.swift in Sources */,
 				2C5AC34326B1C49D00EFFDB0 /* PurchaseViewController.swift in Sources */,
 				2C529ECE26CEBC70000EE40C /* CategoriesView.swift in Sources */,
 				2C529EC426CEB61B000EE40C /* CategoriesLoader.swift in Sources */,
 				2C529EC826CEB6BC000EE40C /* CategoryModel.swift in Sources */,
+				2CC336D826D4016700FA85FC /* SubCategoriesView.swift in Sources */,
 				2C529ED026CEBF7E000EE40C /* CategoryTableViewCell.swift in Sources */,
 				2C5E1F2D26B4784500925D3B /* PurchaseModel.swift in Sources */,
 			);

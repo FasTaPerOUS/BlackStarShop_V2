@@ -51,11 +51,11 @@ class CategoriesViewController: UIViewController {
         }
     }
     
-    //MARKL: - Private Methods
+    //MARK: - Private Methods
     
     private func goToSubCategoriesController(index: Int) {
-//        let nextController = SubCategoriesController()
-//        present(nextController, animated: true)
+        let nextController = SubCategoriesViewController(info: info[index].myStruct.subCategories)
+        navigationController?.pushViewController(nextController, animated: true)
     }
 
     private func goToItemsController(index: Int) {
@@ -68,7 +68,7 @@ class CategoriesViewController: UIViewController {
     
     func goToNextController(index: Int) {
         if info[index].myStruct.subCategories.count != 0 {
-//            goToSubCategoriesController(index: index)
+            goToSubCategoriesController(index: index)
         } else {
 //            goToItemsController(index: index)
         }
