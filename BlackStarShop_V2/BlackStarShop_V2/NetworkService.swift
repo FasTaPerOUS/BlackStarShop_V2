@@ -1,14 +1,16 @@
 //
-//  CategoriesLoader.swift
+//  NetworkService.swift
 //  BlackStarShop_V2
 //
-//  Created by Norik on 19.08.2021.
+//  Created by Norik on 27.08.2021.
 //  Copyright © 2021 Norik. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-final class CategoriesLoader {
+final class NetworkService {
+    
+    //MARK: - CategoriesLoader
     
     func categoriesLoad(completion: @escaping (Result<[CompareIDCategory], Error>) -> Void) {
         URLSession.shared.dataTask(with: categoriesURL, completionHandler: { (data, response, error) in
@@ -24,12 +26,31 @@ final class CategoriesLoader {
                     if key == "123" && value.name == "Предзаказ" { continue }
                     info.append(CompareIDCategory(id: key, myStruct: value))
                 }
-                //сортирую категории по sortOrder
                 info.sort(by: {$0.myStruct.sortOrder < $1.myStruct.sortOrder})
                 completion(.success(info))
             } catch {
                 completion(.failure(error))
             }
         }).resume()
+    }
+    
+    //MARK: - ImagesLoader
+    
+    func imagesLoader(urls: [URL?] ,completion: @escaping ([UIImage?]) -> Void) {
+        var images = [UIImage?]()
+        for url in urls {
+            if url == nil {
+                images.append(UIImage(systemName: "No logo"))
+            } else {
+                guard let imageData = try? Data(contentsOf: url!),
+                    let image = UIImage(data: imageData) else {
+                    images.append(UIImage(named: "No Logo"))
+                    print("\(#file), \(#function), \(#line) - Проблема с датой или преобразованием")
+                    continue
+                }
+                images.append(image)
+            }
+        }
+        completion(images)
     }
 }

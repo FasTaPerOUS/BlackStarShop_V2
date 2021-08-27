@@ -38,7 +38,7 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CategoriesLoader().categoriesLoad { result in
+        NetworkService().categoriesLoad { result in
             switch result {
             case .success(let z):
                 DispatchQueue.main.async {

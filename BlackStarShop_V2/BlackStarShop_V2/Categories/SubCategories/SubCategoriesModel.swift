@@ -33,24 +33,16 @@ struct SubCategoriesModel: IconsDownloadForSCProtocol {
     }
     
     mutating func downloadImages(completion: @escaping () -> ()) {
+        var urls = [URL?]()
         for el in info {
-            if el.iconImage == "" {
-                images.append(UIImage(named: "No Logo"))
-            } else {
-                guard let url = URL(string: mainURLString + el.iconImage) else {
-                    images.append(UIImage(named: "No Logo"))
-                    print("\(#file), \(#function), \(#line) - Не существует URL для получения иконки")
-                    return
-                }
-                guard let imageData = try? Data(contentsOf: url),
-                    let image = UIImage(data: imageData) else {
-                    images.append(UIImage(named: "No Logo"))
-                    print("\(#file), \(#function), \(#line) - Проблема с датой или преобразованием")
-                    return
-                }
-                images.append(image)
-            }
+            let url = URL(string: mainURLString + el.iconImage)
+            urls.append(url)
         }
+        var thisStruct = self
+        NetworkService().imagesLoader(urls: urls) { (images) in
+            thisStruct.images = images
+        }
+        self = thisStruct
         completion()
     }
 }
