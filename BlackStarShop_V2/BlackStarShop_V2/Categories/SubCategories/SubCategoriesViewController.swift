@@ -56,7 +56,8 @@ class SubCategoriesViewController: UIViewController {
     }
     
     func goToNextController(index: Int) {
-        
+        let vc = ItemsViewController(id: String(model.info[index].id), extraID: String(model.info.last?.id ?? -999))
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
