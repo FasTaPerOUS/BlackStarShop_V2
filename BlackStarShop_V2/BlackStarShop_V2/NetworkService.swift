@@ -23,7 +23,7 @@ final class NetworkService {
                     /* из-за кривой апишки я добавил подобное условие
                      в апи есть повтор категории "Предзаказ" под разными ключами,
                      поэтому я исключаю второй экземпляр */
-                    if key == "123" && value.name == "Предзаказ" { continue }
+                    if key == "123" && value.name == "Предзаказ" || value.subCategories.count == 0 { continue }
                     info.append(CompareIDCategory(id: key, myStruct: value))
                 }
                 info.sort(by: {$0.myStruct.sortOrder < $1.myStruct.sortOrder})
