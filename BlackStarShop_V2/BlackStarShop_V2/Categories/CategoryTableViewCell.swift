@@ -13,7 +13,6 @@ final class CategoryTableViewCell: UITableViewCell {
     lazy var iconImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-//        image.layer.cornerRadius = 10
         return image
     }()
     

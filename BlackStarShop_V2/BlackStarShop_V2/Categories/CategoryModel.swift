@@ -37,14 +37,6 @@ struct Category: Codable, ConverterProtocol {
     
     init(from decoder: Decoder) {
         let container = try! decoder.container(keyedBy: TKey.self)
-//        name = try! container.decode(String.self, forKey: .name)
-//        iconImage = try! container.decode(String.self, forKey: .iconImage)
-//        if let sortOrderString = try? container.decode(String.self, forKey: .sortOrder) {
-//            sortOrder = Int(sortOrderString)!
-//        } else {
-//            sortOrder = try! container.decode(Int.self, forKey: .sortOrder)
-//        }
-//        subCategories = try! container.decode([SubCategory].self, forKey: .subCategories)
         converter(container: container)
     }
     
