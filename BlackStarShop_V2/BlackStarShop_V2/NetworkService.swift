@@ -53,4 +53,18 @@ final class NetworkService {
         }
         completion(images)
     }
+    
+    //MARK: - ItemsLoader
+    
+    func itemsLoad(url: URL, completion: @escaping (Result<ItemsWithID, Error>) -> Void) {
+        URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
+            guard let data = data else { return }
+            let decoder = JSONDecoder()
+            do {
+                completion(.success(try decoder.decode(ItemsWithID.self, from: data)))
+            } catch {
+                completion(.failure(error))
+            }
+        }).resume()
+    }
 }
