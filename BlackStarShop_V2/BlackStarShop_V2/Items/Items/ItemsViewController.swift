@@ -61,7 +61,9 @@ class ItemsViewController: UIViewController {
     }
     
     func goToNextController(index: Int) {
-        print(index)
+        guard let info = model?.itemsWithAllColors[index] else { return }
+        let vc = ItemViewController(info: info)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
