@@ -18,6 +18,8 @@
 		2C529ECC26CEB830000EE40C /* CategoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C529ECB26CEB830000EE40C /* CategoryTableView.swift */; };
 		2C529ECE26CEBC70000EE40C /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C529ECD26CEBC70000EE40C /* CategoriesView.swift */; };
 		2C529ED026CEBF7E000EE40C /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C529ECF26CEBF7E000EE40C /* CategoryTableViewCell.swift */; };
+		2C537FF026E0F6FD00C28BD0 /* ParsedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C537FEF26E0F6FD00C28BD0 /* ParsedItem.swift */; };
+		2C537FF226E104F800C28BD0 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C537FF126E104F800C28BD0 /* ItemCollectionViewCell.swift */; };
 		2C55BCA826DD050600017B7A /* ItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55BCA726DD050600017B7A /* ItemsModel.swift */; };
 		2C57C71226DEF2C600E920A1 /* GetInfoFromItemsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C57C71126DEF2C600E920A1 /* GetInfoFromItemsProtocol.swift */; };
 		2C5AC32F26B1BF6A00EFFDB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC32E26B1BF6A00EFFDB0 /* AppDelegate.swift */; };
@@ -26,6 +28,8 @@
 		2C5AC34326B1C49D00EFFDB0 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34226B1C49D00EFFDB0 /* PurchaseViewController.swift */; };
 		2C5AC34526B1C5F700EFFDB0 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34426B1C5F700EFFDB0 /* PurchaseView.swift */; };
 		2C5AC34D26B1DF4D00EFFDB0 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */; };
+		2C5DAA3326DFA4EE00F4787F /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5DAA3226DFA4EE00F4787F /* ItemView.swift */; };
+		2C5DAA3526DFEF3A00F4787F /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5DAA3426DFEF3A00F4787F /* ItemViewController.swift */; };
 		2C5E1F2D26B4784500925D3B /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */; };
 		2C6320AB26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */; };
 		2C9B30C326DBC4AA008D793F /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B30C226DBC4AA008D793F /* ItemModel.swift */; };
@@ -46,6 +50,8 @@
 		2C529ECB26CEB830000EE40C /* CategoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableView.swift; sourceTree = "<group>"; };
 		2C529ECD26CEBC70000EE40C /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		2C529ECF26CEBF7E000EE40C /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		2C537FEF26E0F6FD00C28BD0 /* ParsedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsedItem.swift; sourceTree = "<group>"; };
+		2C537FF126E104F800C28BD0 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C55BCA726DD050600017B7A /* ItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsModel.swift; sourceTree = "<group>"; };
 		2C57C71126DEF2C600E920A1 /* GetInfoFromItemsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInfoFromItemsProtocol.swift; sourceTree = "<group>"; };
 		2C5AC32B26B1BF6A00EFFDB0 /* BlackStarShop_V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackStarShop_V2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +62,8 @@
 		2C5AC34226B1C49D00EFFDB0 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		2C5AC34426B1C5F700EFFDB0 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoField.swift; sourceTree = "<group>"; };
+		2C5DAA3226DFA4EE00F4787F /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		2C5DAA3426DFEF3A00F4787F /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInfoFromCategoriesToTableViewProtocol.swift; sourceTree = "<group>"; };
 		2C9B30C226DBC4AA008D793F /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
@@ -78,9 +86,10 @@
 		2C52189B26D96BE8003B6893 /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				2C537FEF26E0F6FD00C28BD0 /* ParsedItem.swift */,
 				2C57C71126DEF2C600E920A1 /* GetInfoFromItemsProtocol.swift */,
-				2C9B30C226DBC4AA008D793F /* ItemModel.swift */,
 				2C57C71026DEF2A400E920A1 /* Items */,
+				2C5DAA3126DF9FA800F4787F /* Item */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -148,6 +157,17 @@
 				2C529EC126CEB5F4000EE40C /* GlobalVars.swift */,
 			);
 			path = BlackStarShop_V2;
+			sourceTree = "<group>";
+		};
+		2C5DAA3126DF9FA800F4787F /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				2C5DAA3226DFA4EE00F4787F /* ItemView.swift */,
+				2C5DAA3426DFEF3A00F4787F /* ItemViewController.swift */,
+				2C9B30C226DBC4AA008D793F /* ItemModel.swift */,
+				2C537FF126E104F800C28BD0 /* ItemCollectionViewCell.swift */,
+			);
+			path = Item;
 			sourceTree = "<group>";
 		};
 		2CC2C20C26C69E1A0053BD47 /* Purchase */ = {
@@ -253,6 +273,7 @@
 				2C5AC34526B1C5F700EFFDB0 /* PurchaseView.swift in Sources */,
 				2C52189D26D96CCA003B6893 /* ItemsView.swift in Sources */,
 				2C5AC32F26B1BF6A00EFFDB0 /* AppDelegate.swift in Sources */,
+				2C537FF226E104F800C28BD0 /* ItemCollectionViewCell.swift in Sources */,
 				2C5295B826C3306E00330F78 /* InfoFieldController.swift in Sources */,
 				2C5AC34D26B1DF4D00EFFDB0 /* InfoField.swift in Sources */,
 				2C5218A126D97AAB003B6893 /* ItemsCollectionViewCell.swift in Sources */,
@@ -269,10 +290,13 @@
 				2C5AC34326B1C49D00EFFDB0 /* PurchaseViewController.swift in Sources */,
 				2C529ECE26CEBC70000EE40C /* CategoriesView.swift in Sources */,
 				2C529EC826CEB6BC000EE40C /* CategoryModel.swift in Sources */,
+				2C5DAA3326DFA4EE00F4787F /* ItemView.swift in Sources */,
 				2CC336D826D4016700FA85FC /* SubCategoriesView.swift in Sources */,
 				2C52189F26D96CE3003B6893 /* ItemsViewController.swift in Sources */,
+				2C5DAA3526DFEF3A00F4787F /* ItemViewController.swift in Sources */,
 				2C529ED026CEBF7E000EE40C /* CategoryTableViewCell.swift in Sources */,
 				2C5E1F2D26B4784500925D3B /* PurchaseModel.swift in Sources */,
+				2C537FF026E0F6FD00C28BD0 /* ParsedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
