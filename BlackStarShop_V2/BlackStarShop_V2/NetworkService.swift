@@ -67,4 +67,34 @@ final class NetworkService {
             }
         }).resume()
     }
+    
+    //MARK: - ImagesLoader async
+    func imagesLoaderAsync(urls: [URL?] ,completion: @escaping ([UIImage?]) -> Void) {
+        var images = [UIImage?]()
+        let imagesLoaderQueue = DispatchQueue(label: "imagesLoaderAsync")
+        imagesLoaderQueue.sync {
+            let group = DispatchGroup()
+            for url in urls {
+                group.enter()
+                guard let curURL = url else {
+                    images.append(UIImage(systemName: "No logo"))
+                    continue
+                }
+                URLSession.shared.dataTask(with: curURL) { (data, response, error) in
+                    if error != nil { images.append(UIImage(systemName: "No logo")) }
+                    guard let imageData = data,
+                        let image = UIImage(data: imageData) else {
+                        images.append(UIImage(named: "No Logo"))
+                        print("\(#file), \(#function), \(#line) - Проблема с датой или преобразованием")
+                        group.leave()
+                        return
+                    }
+                    images.append(image)
+                    group.leave()
+                }.resume()
+            }
+            group.wait()
+            completion(images)
+        }
+    }
 }
