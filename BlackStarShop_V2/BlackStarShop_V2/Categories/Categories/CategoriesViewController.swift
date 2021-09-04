@@ -13,10 +13,7 @@ class CategoriesViewController: UIViewController {
     //MARK: - Dependencies
     
     var myView: CategoriesView?
-    
-    //MARK: - Properties
-    
-    var info = [CompareIDCategory]()
+    var model: CategoriesModel?
     
     //MARK: - Init
     
@@ -41,10 +38,11 @@ class CategoriesViewController: UIViewController {
         NetworkService().categoriesLoad { result in
             switch result {
             case .success(let z):
-                DispatchQueue.main.async {
-                    self.info = z
-                    self.myView?.reloadData()
-                }
+                self.model = CategoriesModel(info: z, comletion: {
+                    DispatchQueue.main.async {
+                        self.myView?.reloadData()
+                    }
+                })
             case .failure(let err):
                 print(err.localizedDescription)
             }
@@ -54,7 +52,8 @@ class CategoriesViewController: UIViewController {
     //MARK: - Private Methods
     
     private func goToSubCategoriesController(index: Int) {
-        let nextController = SubCategoriesViewController(info: info[index].myStruct.subCategories)
+        guard let info = model?.info[index].myStruct.subCategories else { return }
+        let nextController = SubCategoriesViewController(info: info)
         navigationController?.pushViewController(nextController, animated: true)
     }
 
@@ -67,7 +66,8 @@ class CategoriesViewController: UIViewController {
     //MARK: - Methods
     
     func goToNextController(index: Int) {
-        if info[index].myStruct.subCategories.count != 0 {
+        guard let subCaterories = model?.info[index].myStruct.subCategories else { return }
+        if subCaterories.count != 0 {
             goToSubCategoriesController(index: index)
         } else {
 //            goToItemsController(index: index)
@@ -79,24 +79,37 @@ class CategoriesViewController: UIViewController {
 //for myView.categoriesTableView
 extension CategoriesViewController: GetInfoFromCategoriesToTableViewProtocol {
     
-    func getImage(index: Int) -> UIImage? {
-        if info[index].myStruct.iconImage != "" {
-            guard let url = URL(string: mainURLString + info[index].myStruct.iconImage) else {
-                print("\(#file), \(#function), \(#line) - No URL for icon of category")
-                return nil
-            }
-            do {
-                let data = try Data(contentsOf: url)
-                return UIImage(data: data)
-            } catch {
-                print("\(#file), \(#function), \(#line) data problem: \(error.localizedDescription)")
-                return UIImage(named: "No Logo")
-            }
-        } else { return UIImage(named: "No Logo") }
+    func countInfo() -> Int {
+        return model?.info.count ?? 0
     }
     
     func getLabelText(index: Int) -> String {
-        return info[index].myStruct.name
+        return model?.info[index].myStruct.name ?? ""
     }
+    
+    func getImage(indexPath: IndexPath, completion: ((UIImage) -> ())?) {
+           guard let image = model?.images[indexPath], let resultImage = image else {
+               guard let checker = model?.sended[indexPath.row] else {
+                   return
+               }
+               if !checker {
+                   model?.sended[indexPath.row] = true
+                   getImageAsyncAndCache(indexPath: indexPath) { _ in
+                       DispatchQueue.main.async {
+                           self.myView?.categoriesTableView.reloadRows(at: [indexPath], with: .none)
+                       }
+                   }
+               }
+               return
+           }
+           guard let comp = completion else { return }
+           comp(resultImage)
+       }
+       
+       private func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
+           model?.getImageAsyncAndCache(indexPath: indexPath, completion: { (image) in
+               completion(image)
+           })
+       }
     
 }

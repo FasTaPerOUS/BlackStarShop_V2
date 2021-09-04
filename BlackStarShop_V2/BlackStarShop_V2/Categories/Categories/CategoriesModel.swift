@@ -1,27 +1,27 @@
 //
-//  SubCategoriesModel.swift
+//  CategoriesModel.swift
 //  BlackStarShop_V2
 //
-//  Created by Norik on 23.08.2021.
+//  Created by Norik on 04.09.2021.
 //  Copyright © 2021 Norik. All rights reserved.
 //
 
 import UIKit
 
-class SubCategoriesModel {
+class CategoriesModel {
     
     //MARK: - Properties
     
-    var info = [SubCategory]()
-    var extraID = -999
+    var info = [CompareIDCategory]()
     var images = [IndexPath: UIImage?]()
     var sended = [Bool]()
     
     //MARK: - Init
     
-    init(info: [SubCategory]) {
+    init(info: [CompareIDCategory], comletion: () -> ()) {
         self.info = info
         sended = Array(repeating: false, count: info.count)
+        comletion()
     }
     
     //MARK: - Methods
@@ -32,7 +32,7 @@ class SubCategoriesModel {
     
     func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
         NetworkService().imageLoaderAsync(url:
-        URL(string: String(mainURLString + info[indexPath.row].iconImage))) { (image) in
+        URL(string: String(mainURLString + info[indexPath.row].myStruct.iconImage))) { (image) in
             DispatchQueue.main.async {
                 let im: UIImage = image ?? UIImage(named: "No Logo") ?? UIImage()
                 self.cacheImage(indexPath: indexPath, image: im)

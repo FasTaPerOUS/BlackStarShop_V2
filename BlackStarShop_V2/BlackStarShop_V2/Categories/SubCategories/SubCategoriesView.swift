@@ -43,13 +43,13 @@ extension SubCategoriesView: UITableViewDelegate, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewController?.imagesCount() ?? 0
+        return viewController?.countInfo() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryTableViewCell
         cleanCell(cell: cell)
-        viewController?.getImage1(indexPath: indexPath, completion: { (image) in
+        viewController?.getImage(indexPath: indexPath, completion: { (image) in
             DispatchQueue.main.async {
                 cell.iconImageView.image = image
             }
@@ -69,7 +69,7 @@ extension SubCategoriesView: UITableViewDelegate, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            viewController?.getImage1(indexPath: indexPath, completion: nil)
+            viewController?.getImage(indexPath: indexPath, completion: nil)
         }
     }
 }

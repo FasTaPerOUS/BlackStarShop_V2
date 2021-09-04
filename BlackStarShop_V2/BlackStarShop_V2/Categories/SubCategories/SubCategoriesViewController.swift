@@ -13,22 +13,15 @@ class SubCategoriesViewController: UIViewController {
     //MARK: - Dependencies
     
     var myView: SubCategoriesView?
-    
-    //MARK: - Properties
-    
     var model: SubCategoriesModel?
-    
+
     //MARK: - Init
     
     init(info: [SubCategory]) {
         super.init(nibName: nil, bundle: nil)
         title = "Подкатегории"
         myView = SubCategoriesView(viewController: self)
-        model = SubCategoriesModel(info: info, comletion: {
-//            DispatchQueue.main.async {
-//                self.myView?.reloadData()
-//            }
-        })
+        model = SubCategoriesModel(info: info)
     }
     
     required init?(coder: NSCoder) {
@@ -44,20 +37,9 @@ class SubCategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        DispatchQueue.global(qos: .userInteractive).async {
-//            self.model.downloadImages {
-//                DispatchQueue.main.async {
-//                    self.myView?.reloadData()
-//                }
-//            }
-//        }
     }
     
     //MARK: - Methods
-    
-    func imagesCount() -> Int {
-        return model?.info.count ?? 0
-    }
     
     func goToNextController(index: Int) {
         let vc = ItemsViewController(id: String(model?.info[index].id ?? -999), extraID: String(model?.info.last?.id ?? -999))
@@ -67,15 +49,16 @@ class SubCategoriesViewController: UIViewController {
 
 //for myView.categoriesTableView
 extension SubCategoriesViewController: GetInfoFromCategoriesToTableViewProtocol {
+    
+    func countInfo() -> Int {
+        return model?.info.count ?? 0
+    }
+    
     func getLabelText(index: Int) -> String {
         return model?.info[index].name ?? ""
     }
     
-    func getImage(index: Int) -> UIImage? {
-        return UIImage()
-    }
-    
-    func getImage1(indexPath: IndexPath, completion: ((UIImage) -> ())?) {
+    func getImage(indexPath: IndexPath, completion: ((UIImage) -> ())?) {
         guard let image = model?.images[indexPath], let resultImage = image else {
             guard let checker = model?.sended[indexPath.row] else {
                 return

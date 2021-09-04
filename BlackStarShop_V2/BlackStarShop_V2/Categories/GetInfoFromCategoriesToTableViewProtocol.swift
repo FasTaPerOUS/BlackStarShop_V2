@@ -9,6 +9,8 @@
 import UIKit
 
 protocol GetInfoFromCategoriesToTableViewProtocol {
+    
     func getLabelText(index: Int) -> String
-    func getImage(index: Int) -> UIImage?
+    func getImage(indexPath: IndexPath, completion: ((UIImage) -> ())?)
+    func countInfo() -> Int
 }
