@@ -68,7 +68,8 @@ final class NetworkService {
         }).resume()
     }
     
-    //MARK: - ImagesLoader async
+    //MARK: - urls.count images async loader
+    
     func imagesLoaderAsync(urls: [URL?] ,completion: @escaping ([UIImage?]) -> Void) {
         var images = [UIImage?]()
         let imagesLoaderQueue = DispatchQueue(label: "imagesLoaderAsync")
@@ -96,5 +97,27 @@ final class NetworkService {
             group.wait()
             completion(images)
         }
+    }
+    
+    //MARK: - 1 image async loader
+    
+    func imageLoaderAsync(url: URL? ,completion: @escaping (UIImage?) -> ()) {
+        guard let curURL = url else {
+            completion(nil)
+            return
+        }
+        URLSession.shared.dataTask(with: curURL) { (data, response, error) in
+            if error != nil {
+                completion(nil)
+                return
+            }
+            guard let imageData = data,
+                let image = UIImage(data: imageData) else {
+                completion(nil)
+                print("\(#file), \(#function), \(#line) - Проблема с датой или преобразованием")
+                return
+            }
+            completion(image)
+        }.resume()
     }
 }
