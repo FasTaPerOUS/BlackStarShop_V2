@@ -77,9 +77,16 @@ extension SubCategoriesViewController: GetInfoFromCategoriesToTableViewProtocol 
     
     func getImage1(indexPath: IndexPath, completion: ((UIImage) -> ())?) {
         guard let image = model?.images[indexPath], let resultImage = image else {
-            getImageAsyncAndCache(indexPath: indexPath) { image in
-                guard let comp = completion else { return }
-                comp(image)
+            guard let checker = model?.sended[indexPath.row] else {
+                return
+            }
+            if !checker {
+                model?.sended[indexPath.row] = true
+                getImageAsyncAndCache(indexPath: indexPath) { _ in
+                    DispatchQueue.main.async {
+                        self.myView?.categoriesTableView.reloadRows(at: [indexPath], with: .none)
+                    }
+                }
             }
             return
         }

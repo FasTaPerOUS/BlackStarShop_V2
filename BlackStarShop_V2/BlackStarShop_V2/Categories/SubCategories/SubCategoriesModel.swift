@@ -15,11 +15,13 @@ class SubCategoriesModel {
     var info = [SubCategory]()
     var extraID = -999
     var images = [IndexPath: UIImage?]()
+    var sended = [Bool]()
     
     //MARK: - Init
     
     init(info: [SubCategory], comletion: () -> ()) {
         self.info = info
+        sended = Array(repeating: false, count: info.count)
         comletion()
     }
     
