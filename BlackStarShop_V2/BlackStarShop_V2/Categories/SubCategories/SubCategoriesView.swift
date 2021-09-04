@@ -19,8 +19,7 @@ class SubCategoriesView: CategoryTableView {
     init(viewController: SubCategoriesViewController) {
         self.viewController = viewController
         super.init()
-        categoriesTableView.delegate = self
-        categoriesTableView.dataSource = self
+        addDelegateAndDataSource()
     }
     
     required init?(coder: NSCoder) {
@@ -30,7 +29,18 @@ class SubCategoriesView: CategoryTableView {
     //MARK: - Methods
 }
 
-extension SubCategoriesView: UITableViewDelegate, UITableViewDataSource {
+extension SubCategoriesView: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+    
+    private func addDelegateAndDataSource() {
+        categoriesTableView.delegate = self
+        categoriesTableView.dataSource = self
+        categoriesTableView.prefetchDataSource = self
+    }
+    
+    private func cleanCell(cell: CategoryTableViewCell) {
+        cell.iconImageView.image = nil
+        cell.nameLabel.text = nil
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewController?.imagesCount() ?? 0
@@ -38,7 +48,12 @@ extension SubCategoriesView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryTableViewCell
-        cell.iconImageView.image = viewController?.getImage(index: indexPath.row)
+        cleanCell(cell: cell)
+        viewController?.getImage1(indexPath: indexPath, completion: { (image) in
+            DispatchQueue.main.async {
+                cell.iconImageView.image = image
+            }
+        })
         cell.nameLabel.text = viewController?.getLabelText(index: indexPath.row)
         return cell
     }
@@ -50,5 +65,11 @@ extension SubCategoriesView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewController?.goToNextController(index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            viewController?.getImage1(indexPath: indexPath, completion: nil)
+        }
     }
 }

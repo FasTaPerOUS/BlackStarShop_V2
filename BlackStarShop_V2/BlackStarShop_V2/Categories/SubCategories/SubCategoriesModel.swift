@@ -8,41 +8,35 @@
 
 import UIKit
 
-fileprivate protocol IconsDownloadForSCProtocol {
-    mutating func downloadImages(completion: @escaping () -> ())
-}
-
-struct SubCategoriesModel: IconsDownloadForSCProtocol {
+class SubCategoriesModel {
     
     //MARK: - Properties
     
     var info = [SubCategory]()
     var extraID = -999
-    var images = [UIImage?]()
+    var images = [IndexPath: UIImage?]()
     
     //MARK: - Init
     
-    init(info: [SubCategory]) {
+    init(info: [SubCategory], comletion: () -> ()) {
         self.info = info
+        comletion()
     }
     
     //MARK: - Methods
     
-    func imagesCount() -> Int {
-        return images.count
+    func cacheImage(indexPath: IndexPath, image: UIImage) {
+        images[indexPath] = image
     }
     
-    mutating func downloadImages(completion: @escaping () -> ()) {
-        var urls = [URL?]()
-        for el in info {
-            let url = URL(string: mainURLString + el.iconImage)
-            urls.append(url)
+    func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
+        NetworkService().imageLoaderAsync(url:
+        URL(string: String(mainURLString + info[indexPath.row].iconImage))) { (image) in
+            DispatchQueue.main.async {
+                let im: UIImage = image ?? UIImage(named: "No Logo") ?? UIImage()
+                self.cacheImage(indexPath: indexPath, image: im)
+                completion(im)
+            }
         }
-        var thisStruct = self
-        NetworkService().imagesLoader(urls: urls) { (images) in
-            thisStruct.images = images
-        }
-        self = thisStruct
-        completion()
     }
 }

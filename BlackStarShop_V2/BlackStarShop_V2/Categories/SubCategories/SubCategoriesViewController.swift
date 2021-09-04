@@ -16,15 +16,19 @@ class SubCategoriesViewController: UIViewController {
     
     //MARK: - Properties
     
-    var model: SubCategoriesModel
+    var model: SubCategoriesModel?
     
     //MARK: - Init
     
     init(info: [SubCategory]) {
-        model = SubCategoriesModel(info: info)
         super.init(nibName: nil, bundle: nil)
         title = "Подкатегории"
         myView = SubCategoriesView(viewController: self)
+        model = SubCategoriesModel(info: info, comletion: {
+//            DispatchQueue.main.async {
+//                self.myView?.reloadData()
+//            }
+        })
     }
     
     required init?(coder: NSCoder) {
@@ -40,23 +44,23 @@ class SubCategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.model.downloadImages {
-                DispatchQueue.main.async {
-                    self.myView?.reloadData()
-                }
-            }
-        }
+//        DispatchQueue.global(qos: .userInteractive).async {
+//            self.model.downloadImages {
+//                DispatchQueue.main.async {
+//                    self.myView?.reloadData()
+//                }
+//            }
+//        }
     }
     
     //MARK: - Methods
     
     func imagesCount() -> Int {
-        return model.images.count
+        return model?.info.count ?? 0
     }
     
     func goToNextController(index: Int) {
-        let vc = ItemsViewController(id: String(model.info[index].id), extraID: String(model.info.last?.id ?? -999))
+        let vc = ItemsViewController(id: String(model?.info[index].id ?? -999), extraID: String(model?.info.last?.id ?? -999))
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -64,10 +68,28 @@ class SubCategoriesViewController: UIViewController {
 //for myView.categoriesTableView
 extension SubCategoriesViewController: GetInfoFromCategoriesToTableViewProtocol {
     func getLabelText(index: Int) -> String {
-        return model.info[index].name
+        return model?.info[index].name ?? ""
     }
     
     func getImage(index: Int) -> UIImage? {
-        return model.images[index]
+        return UIImage()
+    }
+    
+    func getImage1(indexPath: IndexPath, completion: ((UIImage) -> ())?) {
+        guard let image = model?.images[indexPath], let resultImage = image else {
+            getImageAsyncAndCache(indexPath: indexPath) { image in
+                guard let comp = completion else { return }
+                comp(image)
+            }
+            return
+        }
+        guard let comp = completion else { return }
+        comp(resultImage)
+    }
+    
+    private func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
+        model?.getImageAsyncAndCache(indexPath: indexPath, completion: { (image) in
+            completion(image)
+        })
     }
 }
