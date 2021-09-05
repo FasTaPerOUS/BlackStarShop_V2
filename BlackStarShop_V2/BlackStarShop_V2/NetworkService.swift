@@ -22,7 +22,8 @@ final class NetworkService {
                 for (key, value) in z {
                     /* из-за кривой апишки я добавил подобное условие
                      в апи есть повтор категории "Предзаказ" под разными ключами,
-                     поэтому я исключаю второй экземпляр */
+                     поэтому я исключаю второй экземпляр,
+                     исключаю категории с пустыми подкатегориями и товарами */
                     if key == "123" && value.name == "Предзаказ" || value.subCategories.count == 0 { continue }
                     info.append(CompareIDCategory(id: key, myStruct: value))
                 }
