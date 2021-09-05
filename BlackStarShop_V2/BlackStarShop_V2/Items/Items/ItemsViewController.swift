@@ -57,7 +57,7 @@ class ItemsViewController: UIViewController {
     //MARK: - Methods
     
     func itemsIsEmpty() -> Bool {
-        return model?.images.isEmpty ?? false
+        return model?.itemsWithAllColors.isEmpty ?? false
     }
     
     func goToNextController(index: Int) {
@@ -72,15 +72,36 @@ class ItemsViewController: UIViewController {
 extension ItemsViewController: GetInfoFromItemsProtocol {
     
     func countItems() -> Int {
-        return model?.images.count ?? 0
+        return model?.itemsWithAllColors.count ?? 0
     }
     
     func getName(index: Int) -> String? {
         return model?.itemsWithAllColors[index].name
     }
     
-    func getImage(index: Int) -> UIImage? {
-        return model?.images[index]
+    func getImage(indexPath: IndexPath, completion: ((UIImage) -> ())?) {
+        guard let image = model?.images[indexPath], let resultImage = image else {
+            guard let checker = model?.sended[indexPath.row] else {
+                return
+            }
+            if !checker {
+                model?.sended[indexPath.row] = true
+                getImageAsyncAndCache(indexPath: indexPath) { _ in
+                    DispatchQueue.main.async {
+                        self.myView?.reloadItems(indexPaths: [indexPath])
+                    }
+                }
+            }
+            return
+        }
+        guard let comp = completion else { return }
+        comp(resultImage)
+    }
+    
+    private func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
+        model?.getImageAsyncAndCache(indexPath: indexPath, completion: { (image) in
+            completion(image)
+        })
     }
     
     // ̶s̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ ̶t̶e̶x̶t̶

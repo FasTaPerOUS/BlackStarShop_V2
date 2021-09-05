@@ -28,7 +28,8 @@ final class ItemsModel {
     var items = [Item]()
     var extraID = "-999"
     var itemsWithAllColors = [OneItemWithAllColors]()
-    var images = [UIImage?]()
+    var images = [IndexPath: UIImage?]()
+    var sended = [Bool]()
     
     //MARK: - Init
     
@@ -68,18 +69,8 @@ final class ItemsModel {
         }
     }
     
-    private func imagesLoad() {
-        var urls = [URL?]()
-        for el in itemsWithAllColors {
-            guard let url = URL(string: mainURLString + el.mainImage[0]) else {
-                urls.append(nil)
-                continue
-            }
-            urls.append(url)
-        }
-        NetworkService().imagesLoader(urls: urls) { [weak self] (arr) in
-            self?.images = arr
-        }
+    private func cacheImage(indexPath: IndexPath, image: UIImage) {
+        images[indexPath] = image
     }
     
     //MARK: - Methods
@@ -93,11 +84,22 @@ final class ItemsModel {
                 }
                 self?.items.sort(by: { $0.sortOrder < $1.sortOrder })
                 self?.creatingItemsForCollection()
-                self?.imagesLoad()
+                self?.sended = Array(repeating: false, count: self?.itemsWithAllColors.count ?? 0)
                 closure()
             case .failure(let err):
                 print(err.localizedDescription)
                 closure()
+            }
+        }
+    }
+    
+    func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
+        NetworkService().imageLoaderAsync(url:
+        URL(string: String(mainURLString + (itemsWithAllColors[indexPath.row].mainImage.first ?? "")))) { (image) in
+            DispatchQueue.main.async {
+                let im: UIImage = image ?? UIImage(named: "No Logo") ?? UIImage()
+                self.cacheImage(indexPath: indexPath, image: im)
+                completion(im)
             }
         }
     }

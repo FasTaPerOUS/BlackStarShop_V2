@@ -12,7 +12,7 @@ import UIKit
     
     func countItems() -> Int
     func getName(index: Int) -> String?
-    func getImage(index: Int) -> UIImage?
+    func getImage(indexPath: IndexPath, completion: ((UIImage) -> ())?)
     func getOldPrice(index: Int) -> NSAttributedString?
     func getCurPrice(index: Int) -> String?
     @objc optional func getDescription(index: Int) -> String?

@@ -113,16 +113,28 @@ final class ItemsView: UIView {
         }
     }
     
+    func reloadItems(indexPaths: [IndexPath]) {
+        itemsCollectionView.reloadItems(at: indexPaths)
+    }
+    
     func reloadData() {
         itemsCollectionView.reloadData()
     }
 }
 
-extension ItemsView: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ItemsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching {
     
-    func addDelegateAndDataSource() {
+    private func cleanCell(cell: ItemsCollectionViewCell) {
+        cell.nameLabel.text = nil
+        cell.imageView.image = nil
+        cell.oldPriceLabel.attributedText = nil
+        cell.curPriceLabel.text = nil
+    }
+    
+    private func addDelegateAndDataSource() {
         itemsCollectionView.delegate = self
         itemsCollectionView.dataSource = self
+        itemsCollectionView.prefetchDataSource = self
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -131,15 +143,26 @@ extension ItemsView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Item for items", for: indexPath) as? ItemsCollectionViewCell else { return UICollectionViewCell() }
+        cleanCell(cell: cell)
         cell.nameLabel.text = viewController?.getName(index: indexPath.row)
-        cell.imageView.image = viewController?.getImage(index: indexPath.row)
         cell.oldPriceLabel.attributedText = viewController?.getOldPrice(index: indexPath.row)
         cell.curPriceLabel.text = (viewController?.getCurPrice(index: indexPath.row) ?? "") + "₽"
+        viewController?.getImage(indexPath: indexPath, completion: { (image) in
+            DispatchQueue.main.async {
+                cell.imageView.image = image
+            }
+        })
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewController?.goToNextController(index: indexPath.row)
 //        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            viewController?.getImage(indexPath: indexPath, completion: nil)
+        }
     }
 }
