@@ -102,22 +102,24 @@ final class NetworkService {
     //MARK: - 1 image async loader
     
     func imageLoaderAsync(url: URL? ,completion: @escaping (UIImage?) -> ()) {
-        guard let curURL = url else {
-            completion(nil)
-            return
+        DispatchQueue.global(qos: .userInteractive).async {
+            guard let curURL = url else {
+                completion(nil)
+                return
+            }
+            URLSession.shared.dataTask(with: curURL) { (data, response, error) in
+                if error != nil {
+                    completion(nil)
+                    return
+                }
+                guard let imageData = data,
+                    let image = UIImage(data: imageData) else {
+                    completion(nil)
+                    print("\(#file), \(#function), \(#line) - Проблема с датой или преобразованием")
+                    return
+                }
+                completion(image)
+            }.resume()
         }
-        URLSession.shared.dataTask(with: curURL) { (data, response, error) in
-            if error != nil {
-                completion(nil)
-                return
-            }
-            guard let imageData = data,
-                let image = UIImage(data: imageData) else {
-                completion(nil)
-                print("\(#file), \(#function), \(#line) - Проблема с датой или преобразованием")
-                return
-            }
-            completion(image)
-        }.resume()
     }
 }
