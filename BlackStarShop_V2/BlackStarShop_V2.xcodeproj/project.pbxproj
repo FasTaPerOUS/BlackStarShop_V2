@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C504A8326E570A7006A244C /* MultiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C504A8226E570A7006A244C /* MultiViewController.swift */; };
+		2C504A8526E5764F006A244C /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C504A8426E5764F006A244C /* MultiView.swift */; };
+		2C504A8726E5808A006A244C /* MultiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C504A8626E5808A006A244C /* MultiTableViewCell.swift */; };
 		2C52189A26D9400D003B6893 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C52189926D9400D003B6893 /* NetworkService.swift */; };
 		2C52189D26D96CCA003B6893 /* ItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C52189C26D96CCA003B6893 /* ItemsView.swift */; };
 		2C52189F26D96CE3003B6893 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C52189E26D96CE3003B6893 /* ItemsViewController.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C504A8226E570A7006A244C /* MultiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiViewController.swift; sourceTree = "<group>"; };
+		2C504A8426E5764F006A244C /* MultiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
+		2C504A8626E5808A006A244C /* MultiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTableViewCell.swift; sourceTree = "<group>"; };
 		2C52189926D9400D003B6893 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		2C52189C26D96CCA003B6893 /* ItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsView.swift; sourceTree = "<group>"; };
 		2C52189E26D96CE3003B6893 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +164,9 @@
 				2C52189B26D96BE8003B6893 /* Items */,
 				2C52189926D9400D003B6893 /* NetworkService.swift */,
 				2C529EC126CEB5F4000EE40C /* GlobalVars.swift */,
+				2C504A8226E570A7006A244C /* MultiViewController.swift */,
+				2C504A8426E5764F006A244C /* MultiView.swift */,
+				2C504A8626E5808A006A244C /* MultiTableViewCell.swift */,
 			);
 			path = BlackStarShop_V2;
 			sourceTree = "<group>";
@@ -288,6 +297,7 @@
 				2C529EC226CEB5F4000EE40C /* GlobalVars.swift in Sources */,
 				2C529ECC26CEB830000EE40C /* CategoryTableView.swift in Sources */,
 				2CC336DA26D40D3D00FA85FC /* SubCategoriesModel.swift in Sources */,
+				2C504A8726E5808A006A244C /* MultiTableViewCell.swift in Sources */,
 				2C55BCA826DD050600017B7A /* ItemsModel.swift in Sources */,
 				2C9B30C326DBC4AA008D793F /* ItemModel.swift in Sources */,
 				2CC336D626D3D8B000FA85FC /* SubCategoriesViewController.swift in Sources */,
@@ -299,7 +309,9 @@
 				2C52189F26D96CE3003B6893 /* ItemsViewController.swift in Sources */,
 				2C5DAA3526DFEF3A00F4787F /* ItemViewController.swift in Sources */,
 				2C529ED026CEBF7E000EE40C /* CategoryTableViewCell.swift in Sources */,
+				2C504A8526E5764F006A244C /* MultiView.swift in Sources */,
 				2C5E1F2D26B4784500925D3B /* PurchaseModel.swift in Sources */,
+				2C504A8326E570A7006A244C /* MultiViewController.swift in Sources */,
 				2C537FF026E0F6FD00C28BD0 /* ParsedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

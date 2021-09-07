@@ -43,6 +43,7 @@ final class ItemView: UIView {
         button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = UIFont(name: "System Ultra Light", size: 50)
         button.addTarget(self, action: #selector(leftClick), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
@@ -136,6 +137,7 @@ final class ItemView: UIView {
         setupConstraints(colorsCount: colorsCount)
         hideColorViews(colorsCount: colorsCount)
         updateMainLabels()
+        updatePriceLabel()
         addDelegateAndDataSource()
     }
     
@@ -147,20 +149,18 @@ final class ItemView: UIView {
     
     @objc private func leftClick() {
         guard let nextIndex = viewController?.decreaseCurrImageIndex() else { return }
-        imagesCollectionView.scrollToItem(at: .init(row: nextIndex, section: 0),
-                                          at: .centeredHorizontally, animated: true)
+        scrollTo(index: nextIndex, animated: true)
         checkAndHideLeftRightButtons(index: nextIndex)
     }
     
     @objc private func rightClick() {
         guard let nextIndex = viewController?.increaseCurrImageIndex() else { return }
-        imagesCollectionView.scrollToItem(at: .init(row: nextIndex, section: 0),
-                                          at: .centeredHorizontally, animated: true)
+        scrollTo(index: nextIndex, animated: true)
         checkAndHideLeftRightButtons(index: nextIndex)
     }
     
     @objc private func colorsClick() {
-        viewController?.showColorsController()
+        viewController?.showColorsController(str: "Color")
     }
     
     @objc private func addItemClick() {
@@ -251,7 +251,10 @@ final class ItemView: UIView {
         descriptionLabel.text = viewController?.getDescription()
     }
     
-    private func checkAndHideLeftRightButtons(index: Int) {
+    
+    //MARK: - Methods
+    
+    func checkAndHideLeftRightButtons(index: Int) {
         guard let quantity = viewController?.model?.images.count else {
             return
         }
@@ -269,8 +272,6 @@ final class ItemView: UIView {
         }
     }
     
-    //MARK: - Methods
-    
     func configurateLeftRightButtons() {
         leftButton.isHidden = true
         guard let quantity = viewController?.countImages() else {
@@ -287,6 +288,14 @@ final class ItemView: UIView {
     
     func reloadData() {
         imagesCollectionView.reloadData()
+    }
+    
+    func updatePriceLabel() {
+        rightPriceLabel.text = viewController?.getPrice()
+    }
+    
+    func scrollTo(index: Int, animated: Bool) {
+        imagesCollectionView.scrollToItem(at: .init(row: index, section: 0), at: .centeredHorizontally, animated: animated)
     }
 
 }
