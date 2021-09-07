@@ -15,7 +15,7 @@ protocol ItemViewProtocol {
     func getPrice() -> String?
     func getDescription() -> String?
     func getCurColor() -> String?
-    func showColorsController()
+    func showColorsController(str: String)
 }
 
 final class ItemViewController: UIViewController {
@@ -87,7 +87,8 @@ extension ItemViewController: ItemViewProtocol {
     }
     
     func getPrice() -> String? {
-        return model?.info.price[currIndex]
+        guard let pr = model?.info.price[currIndex] else { return "" }
+        return pr + "₽"
     }
     
     func getDescription() -> String? {
@@ -98,7 +99,8 @@ extension ItemViewController: ItemViewProtocol {
         return model?.info.colorName[currIndex]
     }
     
-    func showColorsController() {
-        return
+    func showColorsController(str: String) {
+        let vc = MultiViewController(info: model?.info.colorName ?? [], current: self, str: str)
+        present(vc, animated: true, completion: nil)
     }
 }
