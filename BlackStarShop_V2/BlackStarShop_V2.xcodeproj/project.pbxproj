@@ -94,12 +94,23 @@
 		2C52189B26D96BE8003B6893 /* Items */ = {
 			isa = PBXGroup;
 			children = (
-				2C537FEF26E0F6FD00C28BD0 /* ParsedItem.swift */,
 				2C57C71126DEF2C600E920A1 /* GetInfoFromItemsProtocol.swift */,
+				2C537FEF26E0F6FD00C28BD0 /* ParsedItem.swift */,
 				2C57C71026DEF2A400E920A1 /* Items */,
 				2C5DAA3126DF9FA800F4787F /* Item */,
+				2C5510BD26E7A7E90014BEF1 /* Multi */,
 			);
 			path = Items;
+			sourceTree = "<group>";
+		};
+		2C5510BD26E7A7E90014BEF1 /* Multi */ = {
+			isa = PBXGroup;
+			children = (
+				2C504A8226E570A7006A244C /* MultiViewController.swift */,
+				2C504A8426E5764F006A244C /* MultiView.swift */,
+				2C504A8626E5808A006A244C /* MultiTableViewCell.swift */,
+			);
+			path = Multi;
 			sourceTree = "<group>";
 		};
 		2C57C71026DEF2A400E920A1 /* Items */ = {
@@ -164,9 +175,6 @@
 				2C52189B26D96BE8003B6893 /* Items */,
 				2C52189926D9400D003B6893 /* NetworkService.swift */,
 				2C529EC126CEB5F4000EE40C /* GlobalVars.swift */,
-				2C504A8226E570A7006A244C /* MultiViewController.swift */,
-				2C504A8426E5764F006A244C /* MultiView.swift */,
-				2C504A8626E5808A006A244C /* MultiTableViewCell.swift */,
 			);
 			path = BlackStarShop_V2;
 			sourceTree = "<group>";
