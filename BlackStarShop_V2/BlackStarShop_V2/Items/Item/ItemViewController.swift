@@ -15,7 +15,6 @@ protocol ItemViewProtocol {
     func getPrice() -> String?
     func getDescription() -> String?
     func getCurColor() -> String?
-    func showColorsController(str: String)
 }
 
 final class ItemViewController: UIViewController {
@@ -29,6 +28,9 @@ final class ItemViewController: UIViewController {
     var model: ItemModel?
     var currIndex = 0
     var currImageIndex = 0
+    lazy var dataStoreManager: DataStoreManager = {
+        return DataStoreManager()
+    }()
     
     //MARK: - Init
     
@@ -59,6 +61,13 @@ final class ItemViewController: UIViewController {
         }
     }
     
+    //MARK: - Private Methods
+    
+    private func presentController(string: [String?], type: String) {
+        let vc = MultiViewController(info: string , current: self, str: type)
+        present(vc, animated: true, completion: nil)
+    }
+    
     //MARK: - Methods
     
     func decreaseCurrImageIndex() -> Int{
@@ -71,6 +80,14 @@ final class ItemViewController: UIViewController {
         return currImageIndex
     }
     
+    func getColorArrayForNextController() {
+        presentController(string: model?.info.colorName ?? [], type: "Color")
+    }
+    
+    func getSizeArrayForNextController() {
+        let array = model?.info.offers[currIndex].map { return $0.size } ?? []
+        presentController(string: array, type: "Size")
+    }
 }
 
 extension ItemViewController: ItemViewProtocol {
@@ -99,8 +116,4 @@ extension ItemViewController: ItemViewProtocol {
         return model?.info.colorName[currIndex]
     }
     
-    func showColorsController(str: String) {
-        let vc = MultiViewController(info: model?.info.colorName ?? [], current: self, str: str)
-        present(vc, animated: true, completion: nil)
-    }
 }

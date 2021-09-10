@@ -160,11 +160,11 @@ final class ItemView: UIView {
     }
     
     @objc private func colorsClick() {
-        viewController?.showColorsController(str: "Color")
+        viewController?.getColorArrayForNextController()
     }
     
     @objc private func addItemClick() {
-        
+        viewController?.getSizeArrayForNextController()
     }
     
     private func addSubviews() {

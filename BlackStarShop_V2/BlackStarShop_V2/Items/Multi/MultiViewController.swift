@@ -57,7 +57,9 @@ final class MultiViewController: UIViewController {
             })
         } else {
             if controllerType == "Size" {
-                //
+                guard let object = prevViewController?.model?.info,
+                    let currIndex = prevViewController?.currIndex else { return }
+                prevViewController?.dataStoreManager.addItem(item: object, index: currIndex, size: info[index] ?? "")
             }
         }
     }
