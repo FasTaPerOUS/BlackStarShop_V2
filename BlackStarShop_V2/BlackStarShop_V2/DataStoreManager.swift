@@ -57,7 +57,7 @@ class DataStoreManager {
             NSFetchRequest(entityName: "ItemCD"))
         do {
             try viewContext.execute(deleteRequest)
-            try viewContext.save()
+            saveContext()
         } catch {
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
@@ -73,12 +73,7 @@ class DataStoreManager {
         if items[index].quantity == 0 {
             viewContext.delete(items[index])
         }
-        do {
-            try viewContext.save()
-        } catch {
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
+        saveContext()
     }
     
     func addItem(item: OneItemWithAllColors, index: Int, size: String) {
@@ -87,13 +82,8 @@ class DataStoreManager {
             if el.name == item.name && el.colorName == item.colorName[index]
                 && el.size == size {
                 el.quantity += 1
-                do {
-                    try viewContext.save()
-                    return
-                } catch {
-                    let nserror = error as NSError
-                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-                }
+                saveContext()
+                return
             }
         }
         let newItem = ItemCD(context: viewContext)
@@ -102,8 +92,8 @@ class DataStoreManager {
         newItem.quantity = 1
         newItem.size = size
         newItem.mainImageURL = item.mainImage[index]
-        newItem.currPrice = Int16(item.price[index]) ?? -1
-        newItem.oldPrice = Int16(item.oldPrice[index]) ?? -1
+        newItem.currPrice = Int32(item.price[index]) ?? -1
+        newItem.oldPrice = Int32(item.oldPrice[index]) ?? -1
         newItem.tag = item.tag[index]
         newItem.descript = item.description
         var s = [String]()
@@ -111,13 +101,7 @@ class DataStoreManager {
             s.append(el.imageURL)
         }
         newItem.productImagesURL = s
-        do {
-            try viewContext.save()
-            return
-        } catch {
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
+        saveContext()
     }
     
     func deleteItem(at index: Int) {

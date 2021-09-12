@@ -23,9 +23,9 @@ extension ItemCD {
     @NSManaged public var colorName: String?
     @NSManaged public var productImagesURL: [String]?
     @NSManaged public var size: String?
-    @NSManaged public var currPrice: Int16
-    @NSManaged public var oldPrice: Int16
+    @NSManaged public var currPrice: Int32
+    @NSManaged public var oldPrice: Int32
     @NSManaged public var tag: String?
-    @NSManaged public var quantity: Int16
+    @NSManaged public var quantity: Int32
 
 }

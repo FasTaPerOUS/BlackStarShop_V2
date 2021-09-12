@@ -31,7 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        firstController.navigationController?.navigationBar.backgroundColor = .mainColor
         let firstControllerForTabBarController = UINavigationController(rootViewController: firstController)
         firstControllerForTabBarController.title = "Магазин"
-        tabBarController.viewControllers = [firstControllerForTabBarController]
+        let secondController = CartViewController()
+        secondController.title = "Корзина"
+        let secondControllerForTabBarController = UINavigationController(rootViewController: secondController)
+        secondControllerForTabBarController.title = "Корзина"
+        tabBarController.viewControllers = [firstControllerForTabBarController, secondControllerForTabBarController]
 //        tabBarController.tabBar.barTintColor = .mainColor
 //        tabBarController.tabBar.alpha = 1
 //        tabBarController.tabBar.trans
