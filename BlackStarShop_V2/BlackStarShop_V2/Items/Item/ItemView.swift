@@ -298,6 +298,9 @@ final class ItemView: UIView {
         imagesCollectionView.scrollToItem(at: .init(row: index, section: 0), at: .centeredHorizontally, animated: animated)
     }
 
+    func hideAddButton() {
+        addItemToCartButton.isHidden = true
+    }
 }
 
 extension ItemView: UICollectionViewDelegate, UICollectionViewDataSource {
