@@ -170,6 +170,12 @@ extension CartViewController: ForCartTableViewProtocol {
         self.myView?.reloadData()
         self.myView?.updateLabelsText()
     }
+    
+    func changeQuantity(at index: Int) {
+        self.model?.changeQuantity(at: index)
+        self.model?.updateModel()
+        self.myView?.updateLabelsText()
+    }
 }
 
 extension CartViewController: ForCartViewProtocol {

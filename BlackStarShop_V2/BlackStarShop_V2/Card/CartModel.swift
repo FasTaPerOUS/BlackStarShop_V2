@@ -50,4 +50,8 @@ class CartModel {
     func deleteItem(at index: Int) {
         dataStoreManager.deleteItem(at: index)
     }
+    
+    func changeQuantity(at index: Int) {
+        dataStoreManager.updateQuantityOfItem(index: index)
+    }
 }

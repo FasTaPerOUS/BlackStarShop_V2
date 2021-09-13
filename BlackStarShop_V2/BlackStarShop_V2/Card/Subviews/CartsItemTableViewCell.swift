@@ -10,6 +10,12 @@ import UIKit
 
 class CartsItemTableViewCell: UITableViewCell {
     
+    typealias CartsItemTableViewCellCall = (CartsItemTableViewCell) -> ()
+    
+    var minusButtonTicked: CartsItemTableViewCellCall?
+    
+    //MARK: - UI
+    
     lazy var photoImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +44,7 @@ class CartsItemTableViewCell: UITableViewCell {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 12
-//        button.addTarget(self, action: #selector(minus), for: .touchUpInside)
+        button.addTarget(self, action: #selector(minus), for: .touchUpInside)
         return button
     }()
     
@@ -73,6 +79,8 @@ class CartsItemTableViewCell: UITableViewCell {
         label.textAlignment = .right
         return label
     }()
+    
+    //MARK
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -124,5 +132,21 @@ class CartsItemTableViewCell: UITableViewCell {
             sizeLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             sizeLabel.trailingAnchor.constraint(equalTo: totalLabel.leadingAnchor, constant: -15)
         ])
+    }
+    
+    //MARK: - Private Methods
+    
+    @objc private func minus() {
+        minusButtonTicked?(self)
+    }
+    
+    //MARK: - Methods
+    
+    func hideButton() {
+        if quantityLabel.text != "1" {
+            minusButton.isHidden = false
+        } else {
+            minusButton.isHidden = true
+        }
     }
 }

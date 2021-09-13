@@ -193,10 +193,11 @@ extension CartView: UITableViewDataSource, UITableViewDelegate, UITableViewDataS
         cell.tagLabel.text = viewController?.getTag(index: indexPath.row)
         cell.sizeLabel.text = viewController?.getSize(index: indexPath.row)
         cell.totalLabel.text = viewController?.getTotal(index: indexPath.row)
-        if cell.quantityLabel.text == "1" {
-            cell.minusButton.isHidden = true
-        } else {
-            cell.minusButton.isHidden = false
+        cell.hideButton()
+        cell.minusButtonTicked = { cell in
+            self.viewController?.changeQuantity(at: indexPath.row)
+            cell.quantityLabel.text = self.viewController?.getQuantity(index: indexPath.row)
+            cell.hideButton()
         }
         return cell
     }
