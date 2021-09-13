@@ -178,7 +178,7 @@ final class PurchaseView: UIView {
             
             confirmPurchaseButton.topAnchor.constraint(equalTo: addressStackView.bottomAnchor, constant: 30),
             confirmPurchaseButton.trailingAnchor.constraint(equalTo: addressStackView.trailingAnchor),
-            confirmPurchaseButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 20)
+            confirmPurchaseButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ])
     }
     
