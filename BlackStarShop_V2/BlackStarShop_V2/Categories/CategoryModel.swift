@@ -86,13 +86,13 @@ struct SubCategory: Codable, ConverterProtocol {
     //MARK: - Init
     
     init(from decoder: Decoder) {
-        let container = try! decoder.container(keyedBy: CodingKeys.self)
+        let container = try! decoder.container(keyedBy: TKey.self)
         converter(container: container)
     }
     
     //MARK: - Fileprivate Methods
     
-    fileprivate mutating func converter(container: KeyedDecodingContainer<SubCategory.CodingKeys>) {
+    fileprivate mutating func converter(container: KeyedDecodingContainer<TKey>) {
         do {
             if let idString = try? container.decode(String.self, forKey: .id) {
                 id = Int(idString) ?? -998
