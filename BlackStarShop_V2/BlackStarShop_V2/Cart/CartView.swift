@@ -145,11 +145,14 @@ final class CartView: UIView {
     
 }
 
+//MARK: - UITableView Delegate, DataSource, DataSourcePrefetching
+
 extension CartView: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
     
     private func addDelegateAndDataSource() {
         itemsTableView.delegate = self
         itemsTableView.dataSource = self
+        itemsTableView.prefetchDataSource = self
     }
     
     private func cleanCell(cell: CartsItemTableViewCell) {

@@ -35,8 +35,10 @@ final class ItemViewController: UIViewController {
     //MARK: - Init
     
     init(info: OneItemWithAllColors) {
-        model = ItemModel(info: info)
         super.init(nibName: nil, bundle: nil)
+        title = "Описание"
+        
+        model = ItemModel(info: info)
         myView = ItemView(viewController: self, colorsCount: model?.info.colorName.count ?? 0)
     }
     
@@ -89,6 +91,8 @@ final class ItemViewController: UIViewController {
         presentController(string: array, type: "Size")
     }
 }
+
+//MARK: - For myView
 
 extension ItemViewController: ItemViewProtocol {
     func countImages() -> Int {

@@ -27,7 +27,7 @@ protocol ForCartViewProtocol {
     func removeAll()
 }
 
-class CartViewController: UIViewController {
+final class CartViewController: UIViewController {
     
     //MARK: - Dependencies
     
@@ -38,6 +38,8 @@ class CartViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        title = "Корзина"
+        
         myView = CartView(viewController: self)
         model = CartModel()
     }
@@ -46,23 +48,23 @@ class CartViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Life cicle
+    //MARK: - Life cycle
     
     override func loadView() {
         super.loadView()
+        udpateNavigationBarAndTabBarBackgroundColor(color: .mainColor)
         view = myView
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        print("OLD")
-//        model?.printing()
+        udpateNavigationBarAndTabBarBackgroundColor(color: .mainColor)
         model?.updateModel()
         myView?.updateLabelsText()
         myView?.reloadData()
-//        print("NEW")
-//        model?.printing()
     }
+    
+    //MARK: - Methods
     
     func goToItemController(index: Int) {
         let infoCD = model?.info[index]
@@ -74,7 +76,7 @@ class CartViewController: UIViewController {
                                         productImages: [
                                             [ProductImage(imageURL: infoCD?.mainImageURL ?? "",
                                                                       sortOrder: -404)]
-            ],
+                                        ],
                                         offers: [],
                                         price: [String(infoCD?.currPrice ?? -404)],
                                         oldPrice: [String(infoCD?.oldPrice ?? -404)],
@@ -95,6 +97,8 @@ class CartViewController: UIViewController {
         }
     }
 }
+
+//MARK: - For myView.itemsTableView
 
 extension CartViewController: ForCartTableViewProtocol {
     
@@ -138,9 +142,9 @@ extension CartViewController: ForCartTableViewProtocol {
                 return ""
         }
         if oldPrice < 0 {
-            return String(quantity * currPrice)
+            return String(quantity * currPrice) + "₽"
         } else {
-            return String(quantity * oldPrice)
+            return String(quantity * oldPrice) + "₽"
         }
     }
     
@@ -161,7 +165,7 @@ extension CartViewController: ForCartTableViewProtocol {
             let quantity = model?.info[index].quantity else {
             return ""
         }
-        return String(quantity * currPrice)
+        return String(quantity * currPrice) + "₽"
     }
     
     func deleteItem(at index: Int) {
@@ -177,6 +181,8 @@ extension CartViewController: ForCartTableViewProtocol {
         self.myView?.updateLabelsText()
     }
 }
+
+//MARK: - For myView.(other labels, buttons)
 
 extension CartViewController: ForCartViewProtocol {
     

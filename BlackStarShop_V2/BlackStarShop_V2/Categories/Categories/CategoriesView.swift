@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesView: CategoryTableView {
+final class CategoriesView: CategoryTableView {
     
     //MARK: - Dependencies
     
@@ -27,7 +27,13 @@ class CategoriesView: CategoryTableView {
     }
     
     //MARK: - Methods
+    
+    func reloadCells(indexPaths: [IndexPath]) {
+        categoriesTableView.reloadRows(at: indexPaths, with: .none)
+    }
 }
+
+//MARK: - TableView Delegate, DatasSource, DataSourcePrefetching
 
 extension CategoriesView: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     

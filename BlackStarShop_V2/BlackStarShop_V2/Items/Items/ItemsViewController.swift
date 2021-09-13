@@ -8,7 +8,16 @@
 
 import UIKit
 
-class ItemsViewController: UIViewController {
+protocol ItemsViewProtocol {
+    
+    func countItems() -> Int
+    func getName(index: Int) -> String?
+    func getImage(indexPath: IndexPath, completion: ((UIImage) -> ())?)
+    func getOldPrice(index: Int) -> NSAttributedString?
+    func getCurPrice(index: Int) -> String?
+}
+
+final class ItemsViewController: UIViewController {
     
     //MARK: - Dependencies
     
@@ -38,6 +47,7 @@ class ItemsViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
         view = myView
     }
     
@@ -54,6 +64,10 @@ class ItemsViewController: UIViewController {
         })
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
+    }
+    
     //MARK: - Methods
     
     func itemsIsEmpty() -> Bool {
@@ -68,8 +82,15 @@ class ItemsViewController: UIViewController {
     
 }
 
-//for collectionView
-extension ItemsViewController: GetInfoFromItemsProtocol {
+//MARK: - For myView.itemsCollectionView
+
+extension ItemsViewController: ItemsViewProtocol {
+    
+    private func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
+        model?.getImageAsyncAndCache(indexPath: indexPath, completion: { (image) in
+            completion(image)
+        })
+    }
     
     func countItems() -> Int {
         return model?.itemsWithAllColors.count ?? 0
@@ -96,12 +117,6 @@ extension ItemsViewController: GetInfoFromItemsProtocol {
         }
         guard let comp = completion else { return }
         comp(resultImage)
-    }
-    
-    private func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
-        model?.getImageAsyncAndCache(indexPath: indexPath, completion: { (image) in
-            completion(image)
-        })
     }
     
     // ̶s̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ ̶t̶e̶x̶t̶

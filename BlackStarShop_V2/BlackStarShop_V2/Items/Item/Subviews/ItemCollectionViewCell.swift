@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ItemCollectionViewCell: UICollectionViewCell {
+final class ItemCollectionViewCell: UICollectionViewCell {
     
     //MARK: - UI
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

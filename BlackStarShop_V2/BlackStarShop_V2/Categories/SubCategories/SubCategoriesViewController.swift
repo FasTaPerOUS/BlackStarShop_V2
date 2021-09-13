@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubCategoriesViewController: UIViewController {
+final class SubCategoriesViewController: UIViewController {
     
     //MARK: - Dependencies
     
@@ -32,11 +32,16 @@ class SubCategoriesViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
         view = myView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
     }
     
     //MARK: - Methods

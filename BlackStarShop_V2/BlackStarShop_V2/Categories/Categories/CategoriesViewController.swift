@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController {
+final class CategoriesViewController: UIViewController {
 
     //MARK: - Dependencies
     
@@ -19,6 +19,7 @@ class CategoriesViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        title = "Категории"
         myView = CategoriesView(viewController: self)
     }
     
@@ -30,53 +31,57 @@ class CategoriesViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
         view = myView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        takeInfoFromApi()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
+    }
+    
+    //MARK: - Private Methods
+    
+    private func takeInfoFromApi() {
         NetworkService().categoriesLoad { result in
             switch result {
             case .success(let z):
-                self.model = CategoriesModel(info: z, comletion: {
+                self.model = CategoriesModel(info: z, completion: {
                     DispatchQueue.main.async {
                         self.myView?.reloadData()
                     }
                 })
             case .failure(let err):
-                print(err.localizedDescription)
+                let alert = UIAlertController(title: err.description.0, message: err.description.1, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Обновить", style: .default, handler: { _ in
+                    self.takeInfoFromApi()
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
-    
-    //MARK: - Private Methods
     
     private func goToSubCategoriesController(index: Int) {
         guard let info = model?.info[index].myStruct.subCategories else { return }
         let nextController = SubCategoriesViewController(info: info)
         navigationController?.pushViewController(nextController, animated: true)
     }
-
-    private func goToItemsController(index: Int) {
-//        let nextController = ItemsController()
-//        present(nextController, animated: true)
-    }
-
     
     //MARK: - Methods
     
     func goToNextController(index: Int) {
-        guard let subCaterories = model?.info[index].myStruct.subCategories else { return }
-        if subCaterories.count != 0 {
-            goToSubCategoriesController(index: index)
-        } else {
-//            goToItemsController(index: index)
-        }
+        goToSubCategoriesController(index: index)
     }
     
 }
 
-//for myView.categoriesTableView
+//MARK: - For myView.categoriesTableView
+
 extension CategoriesViewController: GetInfoFromCategoriesToTableViewProtocol {
     
     func countInfo() -> Int {
@@ -96,7 +101,7 @@ extension CategoriesViewController: GetInfoFromCategoriesToTableViewProtocol {
                    model?.sended[indexPath.row] = true
                    getImageAsyncAndCache(indexPath: indexPath) { _ in
                        DispatchQueue.main.async {
-                           self.myView?.categoriesTableView.reloadRows(at: [indexPath], with: .none)
+                           self.myView?.reloadCells(indexPaths: [indexPath])
                        }
                    }
                }

@@ -303,6 +303,8 @@ final class ItemView: UIView {
     }
 }
 
+//MARK: - UICollectionVIew Delegate, DataSource
+
 extension ItemView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     private func addDelegateAndDataSource() {

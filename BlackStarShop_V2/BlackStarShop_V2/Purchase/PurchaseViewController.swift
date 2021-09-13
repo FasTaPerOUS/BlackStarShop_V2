@@ -12,19 +12,23 @@ protocol PurchaseInfoChecker {
     func getWrongInfo() -> [String]
 }
 
-class PurchaseViewController: UIViewController, PurchaseInfoChecker {
+final class PurchaseViewController: UIViewController, PurchaseInfoChecker {
     
     // MARK: - Dependencies
+    
     var myView: PurchaseView?
     
     // MARK: - Properties
+    
     private let purchaseModel = PurchaseInfo()
     var purchaseInfo = PurchaseInfo().takeUserInfo()
     let cities = ["Москва", "Санкт-Петербург", "Краснодар"]
     
     // MARK: - Init
+    
     init() {
         super.init(nibName: nil, bundle: nil)
+        title = "Оформление"
         myView = PurchaseView(viewController: self)
     }
     
@@ -33,15 +37,16 @@ class PurchaseViewController: UIViewController, PurchaseInfoChecker {
     }
     
     // MARK: - Life Cycle
+    
     override func loadView() {
         super.loadView()
+        udpateNavigationBarAndTabBarBackgroundColor(color: .mainColor)
         view = myView
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        udpateNavigationBarAndTabBarBackgroundColor(color: .mainColor)
     }
     
     // MARK: - Methods
@@ -62,8 +67,8 @@ class PurchaseViewController: UIViewController, PurchaseInfoChecker {
             }
             message = String(message.dropLast(2))
         } else {
-            title = "Заказ оформлен"
-            message = "Свяжемся с Вами в ближайшее время"
+            title = "Сбер топ!"
+            message = "Ставим лайк в дневник, где лайк - пятерка по пятибальной системе"
         }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -97,6 +102,7 @@ class PurchaseViewController: UIViewController, PurchaseInfoChecker {
 // MARK: - Picker delegate, datasource
 
 extension PurchaseViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

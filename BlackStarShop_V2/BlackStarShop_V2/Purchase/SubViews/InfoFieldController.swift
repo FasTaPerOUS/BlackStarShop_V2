@@ -12,7 +12,7 @@ protocol InfoFieldCheckProtocol {
     var checker: (() -> Bool)? { get set }
 }
 
-class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
+final class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
     
     //MARK: - Dependencies
     
@@ -140,13 +140,5 @@ class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
         }
         myView?.deselectWrongTextField()
         return true
-    }
-}
-
-//MARK: - RegularChecker
-
-extension String {
-    func matches(_ regex: String) -> Bool {
-        return (self.range(of: regex, options: .regularExpression) != nil)
     }
 }

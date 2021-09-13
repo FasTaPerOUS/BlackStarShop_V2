@@ -122,6 +122,8 @@ final class ItemsView: UIView {
     }
 }
 
+//MARK: - UICollectionView Delegate, DataSource, DataSourcePrefetching
+
 extension ItemsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching {
     
     private func cleanCell(cell: ItemsCollectionViewCell) {
@@ -157,7 +159,7 @@ extension ItemsView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewController?.goToNextController(index: indexPath.row)
-//        collectionView.deselectItem(at: indexPath, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {

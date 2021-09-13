@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CartModel {
+final class CartModel {
     
     //MARK: - Properties
     
@@ -22,9 +22,13 @@ class CartModel {
     
     init() {}
     
+    //MARK: - Private Methods
+    
     private func cacheImage(indexPath: IndexPath, image: UIImage?) {
         images[indexPath] = image
     }
+    
+    //MARK: - Methods
     
     func updateModel() {
         info = dataStoreManager.getItems()

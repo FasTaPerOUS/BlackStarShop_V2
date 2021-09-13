@@ -31,7 +31,7 @@ class DataStoreManager {
         return ItemCD.fetchRequest()
     }()
     
-    // MARK: - Core Data Saving support
+    // MARK: - Core Data Saving
 
     func saveContext () {
         if viewContext.hasChanges {
@@ -44,6 +44,8 @@ class DataStoreManager {
         }
     }
     
+    //MARK: - Core Data Getting
+    
     func getItems() -> [ItemCD] {
         guard let items = try? viewContext.fetch(fetchRequest) else {
             print("Problem in \(#file), \(#function)")
@@ -51,6 +53,8 @@ class DataStoreManager {
         }
         return items
     }
+    
+    //MARK: - Core Data Changing
     
     func removeItems() {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest:

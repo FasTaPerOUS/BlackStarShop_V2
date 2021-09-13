@@ -8,19 +8,6 @@
 
 import UIKit
 
-struct OneItemWithAllColors {
-    let name: String
-    let description: String
-    var colorName: [String]
-    let sortOrder: Int
-    var mainImage: [String]
-    var productImages: [[ProductImage]]
-    var offers: [[Offer]]
-    var price: [String]
-    var oldPrice: [String]
-    var tag: [String]
-}
-
 final class ItemsModel {
     
     //MARK: - Properties

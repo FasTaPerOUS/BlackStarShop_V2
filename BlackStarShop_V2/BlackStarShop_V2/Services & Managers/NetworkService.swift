@@ -8,29 +8,87 @@
 
 import UIKit
 
+enum Errors: Error {
+    case errorNotNil(str: String)
+    case dataProblem(str: String)
+    case responseNil(str: String)
+    case decodeProblem(str: String)
+    case informationCode(str: String)
+    case redirectCode(str: String)
+    case clientErrorCode(str: String)
+    case serverErrorCode(str: String)
+    case POOP
+}
+
+extension Errors {
+    var description: (String, String) {
+        switch self {
+        case .errorNotNil(let a), .dataProblem(let a),
+             .responseNil(let a), .decodeProblem(let a):
+            return (a, "Не факт что обновление тебе поможет")
+        case .informationCode(let a), .redirectCode(let a),
+             .clientErrorCode(let a), .serverErrorCode(let a):
+            return (a, "Обнови, вдруг повезет")
+        case .POOP:
+            return ("Ошибка", "Обнови, вдруг повезет")
+        }
+        
+    }
+}
+
 final class NetworkService {
     
     //MARK: - CategoriesLoader
     
-    func categoriesLoad(completion: @escaping (Result<[CompareIDCategory], Error>) -> Void) {
-        URLSession.shared.dataTask(with: categoriesURL, completionHandler: { (data, response, error) in
+    func categoriesLoad(completion: @escaping (Result<[CompareIDCategory], Errors>) -> Void) {
+        guard let url = URL(string: categoriesURL) else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             var info = [CompareIDCategory]()
-            guard let data = data else { return }
+            
+            if error != nil {
+                completion(.failure(Errors.errorNotNil(str: "Ошибка")))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(Errors.dataProblem(str: "Проблема с датой")))
+                return
+            }
+            guard let httpRresponse = response as? HTTPURLResponse else {
+                completion(.failure(Errors.responseNil(str: "Response Error")))
+                return
+            }
+            
+            switch httpRresponse.statusCode {
+            case 100...199:
+                completion(.failure(Errors.informationCode(str: "Информационная проблема")))
+                return
+            case 300...399:
+                completion(.failure(Errors.redirectCode(str: "Перенаправления какие-то")))
+                return
+            case 400...499:
+                completion(.failure(Errors.clientErrorCode(str: "Клиентская проблема")))
+                return
+            case 500...599:
+                completion(.failure(Errors.serverErrorCode(str: "Серверу плохо")))
+                return
+            default: break
+            }
+            
             let decoder = JSONDecoder()
             do {
                 let z = try decoder.decode(Welcome.self, from: data)
                 for (key, value) in z {
-                    /* из-за кривой апишки я добавил подобное условие
-                     в апи есть повтор категории "Предзаказ" под разными ключами,
-                     поэтому я исключаю второй экземпляр,
-                     исключаю категории с пустыми подкатегориями и товарами */
-                    if key == "123" && value.name == "Предзаказ" || value.subCategories.count == 0 { continue }
+                    // исключаю категории с пустыми подкатегориями и товарами
+                    if value.subCategories.count == 0 { continue }
                     info.append(CompareIDCategory(id: key, myStruct: value))
                 }
                 info.sort(by: {$0.myStruct.sortOrder < $1.myStruct.sortOrder})
                 completion(.success(info))
             } catch {
-                completion(.failure(error))
+                completion(.failure(Errors.decodeProblem(str: "Декодирование")))
             }
         }).resume()
     }

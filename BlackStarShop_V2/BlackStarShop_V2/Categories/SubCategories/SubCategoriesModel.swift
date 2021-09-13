@@ -24,11 +24,13 @@ class SubCategoriesModel {
         sended = Array(repeating: false, count: info.count)
     }
     
-    //MARK: - Methods
-    
-    func cacheImage(indexPath: IndexPath, image: UIImage) {
+    //MARK: - Private Methods
+       
+    private func cacheImage(indexPath: IndexPath, image: UIImage) {
         images[indexPath] = image
     }
+       
+    //MARK: - Methods
     
     func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
         NetworkService().imageLoaderAsync(url:

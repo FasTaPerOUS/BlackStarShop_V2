@@ -10,6 +10,8 @@ import UIKit
 
 final class CategoryTableViewCell: UITableViewCell {
 
+    //MARK: - UI
+    
     lazy var iconImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +26,8 @@ final class CategoryTableViewCell: UITableViewCell {
         return label
     }()
     
+    //MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
@@ -36,10 +40,12 @@ final class CategoryTableViewCell: UITableViewCell {
     }
     
     // MARK: - Private Methods
+    
     private func addSubviews() {
         contentView.addSubview(iconImageView)
         contentView.addSubview(nameLabel)
     }
+    
     private func configureConstraints() {
         NSLayoutConstraint.activate([
             iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
@@ -53,8 +59,3 @@ final class CategoryTableViewCell: UITableViewCell {
     }
 }
 
-public extension UIColor {
-    static var mainColor: UIColor {
-        return UIColor(displayP3Red: 232/255, green: 231/255, blue: 255/255, alpha: 1)
-    }
-}

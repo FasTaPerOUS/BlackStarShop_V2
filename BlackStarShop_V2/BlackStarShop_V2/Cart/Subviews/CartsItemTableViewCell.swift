@@ -8,10 +8,11 @@
 
 import UIKit
 
-class CartsItemTableViewCell: UITableViewCell {
+final class CartsItemTableViewCell: UITableViewCell {
+    
+    //MARK: - For callback
     
     typealias CartsItemTableViewCellCall = (CartsItemTableViewCell) -> ()
-    
     var minusButtonTicked: CartsItemTableViewCellCall?
     
     //MARK: - UI
@@ -80,7 +81,7 @@ class CartsItemTableViewCell: UITableViewCell {
         return label
     }()
     
-    //MARK
+    //MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -90,6 +91,12 @@ class CartsItemTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Pirvate Methods
+    
+    @objc private func minus() {
+        minusButtonTicked?(self)
     }
     
     private func addSubviews() {
@@ -132,12 +139,6 @@ class CartsItemTableViewCell: UITableViewCell {
             sizeLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             sizeLabel.trailingAnchor.constraint(equalTo: totalLabel.leadingAnchor, constant: -15)
         ])
-    }
-    
-    //MARK: - Private Methods
-    
-    @objc private func minus() {
-        minusButtonTicked?(self)
     }
     
     //MARK: - Methods

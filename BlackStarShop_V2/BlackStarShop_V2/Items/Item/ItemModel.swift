@@ -8,14 +8,20 @@
 
 import UIKit
 
-class ItemModel {
+final class ItemModel {
+    
+    //MARK: Properties
     
     let info: OneItemWithAllColors
     var images = [UIImage?]()
     
+    //MARK: - Init
+    
     init(info: OneItemWithAllColors) {
         self.info = info
     }
+    
+    //MARK: - Methods
     
     func imagesLoad(index: Int, completion: @escaping () -> ()) {
         images = []

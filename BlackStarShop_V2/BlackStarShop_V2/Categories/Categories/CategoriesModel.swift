@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesModel {
+final class CategoriesModel {
     
     //MARK: - Properties
     
@@ -18,18 +18,20 @@ class CategoriesModel {
     
     //MARK: - Init
     
-    init(info: [CompareIDCategory], comletion: () -> ()) {
+    init(info: [CompareIDCategory], completion: () -> ()) {
         self.info = info
         sended = Array(repeating: false, count: info.count)
-        comletion()
+        completion()
     }
     
-    //MARK: - Methods
+    //MARK: - Private Methods
     
-    func cacheImage(indexPath: IndexPath, image: UIImage) {
+    private func cacheImage(indexPath: IndexPath, image: UIImage) {
         images[indexPath] = image
     }
     
+    //MARK: - Methods
+
     func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
         NetworkService().imageLoaderAsync(url:
         URL(string: String(mainURLString + info[indexPath.row].myStruct.iconImage))) { (image) in

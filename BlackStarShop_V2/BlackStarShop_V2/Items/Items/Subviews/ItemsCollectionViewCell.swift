@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemsCollectionViewCell: UICollectionViewCell {
+final class ItemsCollectionViewCell: UICollectionViewCell {
     
     //MARK: - UI
     

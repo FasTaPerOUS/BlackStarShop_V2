@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-public let categoriesURL = URL(string: "https://blackstarshop.ru/index.php?route=api/v1/categories")!
+public let categoriesURL =  "https://blackstarshop.ru/index.php?route=api/v1/categories"
 public let mainURLString = "https://blackstarshop.ru/"
 public let itemsURLString = "https://blackstarshop.ru/index.php?route=api/v1/products&cat_id="

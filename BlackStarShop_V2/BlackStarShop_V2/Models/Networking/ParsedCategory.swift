@@ -1,5 +1,5 @@
 //
-//  CategoryModel.swift
+//  ParsedCategory.swift
 //  BlackStarShop_V2
 //
 //  Created by Norik on 19.08.2021.
@@ -7,11 +7,6 @@
 //
 
 import Foundation
-
-fileprivate protocol ConverterProtocol {
-    associatedtype TKey: CodingKey
-    mutating func converter(container: KeyedDecodingContainer<TKey>)
-}
 
 struct Category: Codable, ConverterProtocol {
     
@@ -24,7 +19,7 @@ struct Category: Codable, ConverterProtocol {
     
     //MARK: - Generics
     
-    fileprivate typealias TKey = CodingKeys
+    typealias TKey = CodingKeys
 
     //MARK: - Properties
     
@@ -42,7 +37,7 @@ struct Category: Codable, ConverterProtocol {
     
     //MARK: - Fileprivate Methods
     
-    fileprivate mutating func converter(container: KeyedDecodingContainer<TKey>) {
+    mutating func converter(container: KeyedDecodingContainer<TKey>) {
         do {
             name = try container.decode(String.self, forKey: .name)
             iconImage = try container.decode(String.self, forKey: .iconImage)
@@ -63,7 +58,7 @@ struct SubCategory: Codable, ConverterProtocol {
     
     //MARK: - Coding keys
     
-    fileprivate enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case iconImage
         case sortOrder
@@ -73,7 +68,7 @@ struct SubCategory: Codable, ConverterProtocol {
     
     //MARK: - Generics
     
-    fileprivate typealias TKey = CodingKeys
+    typealias TKey = CodingKeys
     
     //MARK: - Properties
     
@@ -92,7 +87,7 @@ struct SubCategory: Codable, ConverterProtocol {
     
     //MARK: - Fileprivate Methods
     
-    fileprivate mutating func converter(container: KeyedDecodingContainer<TKey>) {
+    mutating func converter(container: KeyedDecodingContainer<TKey>) {
         do {
             if let idString = try? container.decode(String.self, forKey: .id) {
                 id = Int(idString) ?? -998

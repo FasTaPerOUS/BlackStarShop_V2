@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubCategoriesView: CategoryTableView {
+final class SubCategoriesView: CategoryTableView {
     
     //MARK: - Dependencies
         
@@ -25,9 +25,9 @@ class SubCategoriesView: CategoryTableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //MARK: - Methods
 }
+
+//MARK: - TableView Delegate, DatasSource, DataSourcePrefetching
 
 extension SubCategoriesView: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     

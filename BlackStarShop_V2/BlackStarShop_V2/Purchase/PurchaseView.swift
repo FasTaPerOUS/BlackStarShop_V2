@@ -115,6 +115,74 @@ final class PurchaseView: UIView {
     
     //MARK: - Private methods
     
+    @objc private func nameEditingDidEnd() {
+        viewController?.updateUserInfo(str: nameField.textField.text ?? "", key:
+            PurchaseInfoKeys.name)
+        nameField.textField.resignFirstResponder()
+        nextField(emailField)
+    }
+    @objc private func emailEditingDidEnd() {
+        viewController?.updateUserInfo(str: emailField.textField.text ?? "", key:
+        PurchaseInfoKeys.email)
+        emailField.textField.resignFirstResponder()
+        nextField(phoneField)
+    }
+    @objc private func phoneEditingDidEnd() {
+        viewController?.updateUserInfo(str: phoneField.textField.text ?? "", key:
+        PurchaseInfoKeys.phone)
+        phoneField.textField.resignFirstResponder()
+        nextField(cityField)
+    }
+    @objc private func cityEditingDidEnd() {
+        cityField.textField.resignFirstResponder()
+        nextField(streetField)
+    }
+    @objc private func streetEditingDidEnd() {
+        viewController?.updateUserInfo(str: streetField.textField.text ?? "", key:
+        PurchaseInfoKeys.street)
+        streetField.textField.resignFirstResponder()
+        nextField(houseField)
+    }
+    @objc private func houseEditingDidEnd() {
+        viewController?.updateUserInfo(str: houseField.textField.text ?? "", key:
+        PurchaseInfoKeys.house)
+        houseField.textField.resignFirstResponder()
+        nextField(buildingField)
+    }
+    @objc private func buildingEditingDidEnd() {
+        viewController?.updateUserInfo(str: buildingField.textField.text ?? "", key:
+        PurchaseInfoKeys.building)
+        buildingField.textField.resignFirstResponder()
+        nextField(flatField)
+    }
+    @objc private func flatEditingDidEnd() {
+        viewController?.updateUserInfo(str: flatField.textField.text ?? "", key:
+        PurchaseInfoKeys.flat)
+        flatField.textField.resignFirstResponder()
+        nextField(floorField)
+    }
+    @objc private func floorEditingDidEnd() {
+        viewController?.updateUserInfo(str: floorField.textField.text ?? "", key:
+        PurchaseInfoKeys.floor)
+        floorField.textField.resignFirstResponder()
+        nextField(entranceField)
+    }
+    @objc private func entranceEditingDidEnd() {
+        viewController?.updateUserInfo(str: entranceField.textField.text ?? "", key:
+        PurchaseInfoKeys.entrance)
+        entranceField.textField.resignFirstResponder()
+        nextField(codeOfEntranceField)
+    }
+    @objc private func codeOfEntranceEditingDidEnd() {
+        viewController?.updateUserInfo(str: codeOfEntranceField.textField.text ?? "", key:
+        PurchaseInfoKeys.codeOfEntrance)
+        endEditing(true)
+    }
+    
+    @objc private func confirmPurchase() {
+        viewController?.showAlert()
+    }
+    
     private func setNavigationBarTitle(str: String) {
         viewController?.navigationController?.navigationItem.title = str
     }
@@ -222,91 +290,9 @@ final class PurchaseView: UIView {
         }
     }
     
-    @objc private func nameEditingDidEnd() {
-        viewController?.updateUserInfo(str: nameField.textField.text ?? "", key:
-            PurchaseInfoKeys.name)
-        nameField.textField.resignFirstResponder()
-        nextField(emailField)
-    }
-    @objc private func emailEditingDidEnd() {
-        viewController?.updateUserInfo(str: emailField.textField.text ?? "", key:
-        PurchaseInfoKeys.email)
-        emailField.textField.resignFirstResponder()
-        nextField(phoneField)
-    }
-    @objc private func phoneEditingDidEnd() {
-        viewController?.updateUserInfo(str: phoneField.textField.text ?? "", key:
-        PurchaseInfoKeys.phone)
-        phoneField.textField.resignFirstResponder()
-        nextField(cityField)
-    }
-    @objc private func cityEditingDidEnd() {
-        cityField.textField.resignFirstResponder()
-        nextField(streetField)
-    }
-    @objc private func streetEditingDidEnd() {
-        viewController?.updateUserInfo(str: streetField.textField.text ?? "", key:
-        PurchaseInfoKeys.street)
-        streetField.textField.resignFirstResponder()
-        nextField(houseField)
-    }
-    @objc private func houseEditingDidEnd() {
-        viewController?.updateUserInfo(str: houseField.textField.text ?? "", key:
-        PurchaseInfoKeys.house)
-        houseField.textField.resignFirstResponder()
-        nextField(buildingField)
-    }
-    @objc private func buildingEditingDidEnd() {
-        viewController?.updateUserInfo(str: buildingField.textField.text ?? "", key:
-        PurchaseInfoKeys.building)
-        buildingField.textField.resignFirstResponder()
-        nextField(flatField)
-    }
-    @objc private func flatEditingDidEnd() {
-        viewController?.updateUserInfo(str: flatField.textField.text ?? "", key:
-        PurchaseInfoKeys.flat)
-        flatField.textField.resignFirstResponder()
-        nextField(floorField)
-    }
-    @objc private func floorEditingDidEnd() {
-        viewController?.updateUserInfo(str: floorField.textField.text ?? "", key:
-        PurchaseInfoKeys.floor)
-        floorField.textField.resignFirstResponder()
-        nextField(entranceField)
-    }
-    @objc private func entranceEditingDidEnd() {
-        viewController?.updateUserInfo(str: entranceField.textField.text ?? "", key:
-        PurchaseInfoKeys.entrance)
-        entranceField.textField.resignFirstResponder()
-        nextField(codeOfEntranceField)
-    }
-    @objc private func codeOfEntranceEditingDidEnd() {
-        viewController?.updateUserInfo(str: codeOfEntranceField.textField.text ?? "", key:
-        PurchaseInfoKeys.codeOfEntrance)
-        endEditing(true)
-    }
-    
-    @objc private func confirmPurchase() {
-        viewController?.showAlert()
-    }
-    
     //MARK: - Methods
     
     func updateCityTextField(str: String) {
         cityField.textField.text = str
     }
-}
-
-//MARK: - UIStackView extension
-
-extension UIStackView {
-
-    func addBackground(color: UIColor, cornerRadius: CGFloat? = 0) {
-        let subview = UIView(frame: bounds)
-        subview.backgroundColor = color
-        subview.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        subview.layer.cornerRadius = cornerRadius ?? 0
-        insertSubview(subview, at: 0)
-    }
-
 }
