@@ -29,6 +29,7 @@ final class PurchaseViewController: UIViewController, PurchaseInfoChecker {
     init() {
         super.init(nibName: nil, bundle: nil)
         title = "Оформление"
+        
         myView = PurchaseView(viewController: self)
     }
     
@@ -40,7 +41,6 @@ final class PurchaseViewController: UIViewController, PurchaseInfoChecker {
     
     override func loadView() {
         super.loadView()
-        udpateNavigationBarAndTabBarBackgroundColor(color: .mainColor)
         view = myView
     }
     

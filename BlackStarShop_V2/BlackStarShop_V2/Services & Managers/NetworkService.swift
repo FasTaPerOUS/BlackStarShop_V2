@@ -32,7 +32,6 @@ extension Errors {
         case .POOP:
             return ("Ошибка", "Обнови, вдруг повезет")
         }
-        
     }
 }
 
@@ -40,11 +39,7 @@ final class NetworkService {
     
     //MARK: - CategoriesLoader
     
-    func categoriesLoad(completion: @escaping (Result<[CompareIDCategory], Errors>) -> Void) {
-        guard let url = URL(string: categoriesURL) else {
-            return
-        }
-        
+    func categoriesLoad(url: URL, completion: @escaping (Result<[CompareIDCategory], Errors>) -> Void) {
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             var info = [CompareIDCategory]()
             

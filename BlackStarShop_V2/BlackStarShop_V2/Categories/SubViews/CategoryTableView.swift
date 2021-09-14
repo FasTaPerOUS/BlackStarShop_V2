@@ -25,7 +25,8 @@ class CategoryTableView: UIView {
     init() {
         super.init(frame: .zero)
         addSuvbiews()
-        setupConstraints()
+        setupConstraints() 
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {

@@ -20,6 +20,7 @@ final class SubCategoriesViewController: UIViewController {
     init(info: [SubCategory]) {
         super.init(nibName: nil, bundle: nil)
         title = "Подкатегории"
+        
         myView = SubCategoriesView(viewController: self)
         model = SubCategoriesModel(info: info)
     }
@@ -32,7 +33,6 @@ final class SubCategoriesViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
         view = myView
     }
     
@@ -41,7 +41,8 @@ final class SubCategoriesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.barTintColor = .white
     }
     
     //MARK: - Methods

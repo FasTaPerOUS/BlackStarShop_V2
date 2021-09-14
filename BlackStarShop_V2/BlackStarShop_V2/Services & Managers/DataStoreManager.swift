@@ -68,6 +68,7 @@ class DataStoreManager {
         }
     }
     
+    //используется только когда жмешь на минусовую кнопку в корзине в ячейке
     func updateQuantityOfItem(index: Int) {
         guard let items = try? viewContext.fetch(fetchRequest) else {
             print("Problem in \(#file), \(#function)")
@@ -80,8 +81,11 @@ class DataStoreManager {
         saveContext()
     }
     
+    //добавляется только когда выбираешь размер
     func addItem(item: OneItemWithAllColors, index: Int, size: String) {
         let items = getItems()
+        //проходимся по каждому товару, если есть совпадения по имени, цвету и размеру
+        //то делаем +1 к количесту, сохраняем и завершаем функцию
         for el in items {
             if el.name == item.name && el.colorName == item.colorName[index]
                 && el.size == size {
@@ -90,6 +94,7 @@ class DataStoreManager {
                 return
             }
         }
+        //добавляем ПОЛНОСТЬЮ новый товар и сохраняем его
         let newItem = ItemCD(context: viewContext)
         newItem.colorName = item.colorName[index]
         newItem.name = item.name
@@ -100,11 +105,9 @@ class DataStoreManager {
         newItem.oldPrice = Int32(item.oldPrice[index]) ?? -1
         newItem.tag = item.tag[index]
         newItem.descript = item.description
-        var s = [String]()
-        for el in item.productImages[index] {
-            s.append(el.imageURL)
+        newItem.productImagesURL = item.productImages[index].map {
+            return $0.imageURL
         }
-        newItem.productImagesURL = s
         saveContext()
     }
     

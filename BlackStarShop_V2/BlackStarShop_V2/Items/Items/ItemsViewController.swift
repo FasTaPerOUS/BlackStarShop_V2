@@ -47,7 +47,6 @@ final class ItemsViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
         view = myView
     }
     
@@ -65,7 +64,7 @@ final class ItemsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
+        tabBarController?.tabBar.barTintColor = .white
     }
     
     //MARK: - Methods

@@ -20,7 +20,9 @@ final class CategoriesViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         title = "Категории"
+        
         myView = CategoriesView(viewController: self)
+        model = CategoriesModel()
     }
     
     required init?(coder: NSCoder) {
@@ -31,7 +33,6 @@ final class CategoriesViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
         view = myView
     }
     
@@ -42,20 +43,20 @@ final class CategoriesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        udpateNavigationBarAndTabBarBackgroundColor(color: .white)
+        tabBarController?.tabBar.barTintColor = .white
     }
     
     //MARK: - Private Methods
     
     private func takeInfoFromApi() {
-        NetworkService().categoriesLoad { result in
+        guard let url = URL(string: categoriesURLString) else { return }
+        NetworkService().categoriesLoad(url: url) { result in
             switch result {
             case .success(let z):
-                self.model = CategoriesModel(info: z, completion: {
-                    DispatchQueue.main.async {
-                        self.myView?.reloadData()
-                    }
-                })
+                DispatchQueue.main.async {
+                    self.model?.updateInfo(info: z)
+                    self.myView?.reloadData()
+                }
             case .failure(let err):
                 let alert = UIAlertController(title: err.description.0, message: err.description.1, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Обновить", style: .default, handler: { _ in

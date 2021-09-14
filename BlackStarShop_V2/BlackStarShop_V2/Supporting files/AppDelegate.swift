@@ -19,9 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let firstController = CategoriesViewController()
         let firstControllerForTabBarController = UINavigationController(rootViewController: firstController)
         firstControllerForTabBarController.title = "Магазин"
+        firstControllerForTabBarController.navigationBar.barTintColor = .white
         let secondController = CartViewController()
         let secondControllerForTabBarController = UINavigationController(rootViewController: secondController)
         secondControllerForTabBarController.title = "Корзина"
+        secondControllerForTabBarController.navigationBar.barTintColor = .mainColor
         tabBarController.viewControllers = [firstControllerForTabBarController, secondControllerForTabBarController]
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()

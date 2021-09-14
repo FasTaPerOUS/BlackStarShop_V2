@@ -63,6 +63,12 @@ final class ItemViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.barTintColor = .white
+        navigationController?.navigationBar.barTintColor = .white
+    }
+    
     //MARK: - Private Methods
     
     private func presentController(string: [String?], type: String) {

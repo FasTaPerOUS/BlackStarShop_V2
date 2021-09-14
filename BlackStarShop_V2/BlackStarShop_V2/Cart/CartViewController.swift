@@ -52,7 +52,6 @@ final class CartViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        udpateNavigationBarAndTabBarBackgroundColor(color: .mainColor)
         view = myView
     }
     

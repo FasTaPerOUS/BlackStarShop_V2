@@ -47,10 +47,24 @@
 		2C5AC34D26B1DF4D00EFFDB0 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */; };
 		2C5E1F2D26B4784500925D3B /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */; };
 		2C6320AB26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */; };
+		2C6F92A526F0DDFB0054C168 /* PurchaseUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F929B26F0CBED0054C168 /* PurchaseUnitTests.swift */; };
+		2C6F92A626F0E2D80054C168 /* InfoFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5295B726C3306E00330F78 /* InfoFieldController.swift */; };
+		2C6F92A726F0E2EC0054C168 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */; };
+		2C6F92A826F0E3020054C168 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53C7BD26EFE126004C654A /* Extensions.swift */; };
 		2CC336D626D3D8B000FA85FC /* SubCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */; };
 		2CC336D826D4016700FA85FC /* SubCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D726D4016700FA85FC /* SubCategoriesView.swift */; };
 		2CC336DA26D40D3D00FA85FC /* SubCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C6F929E26F0CBED0054C168 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C5AC32326B1BF6A00EFFDB0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C5AC32A26B1BF6A00EFFDB0;
+			remoteInfo = BlackStarShop_V2;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2C504A8226E570A7006A244C /* MultiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +109,9 @@
 		2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoField.swift; sourceTree = "<group>"; };
 		2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInfoFromCategoriesToTableViewProtocol.swift; sourceTree = "<group>"; };
+		2C6F929926F0CBED0054C168 /* PurchaseUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PurchaseUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C6F929B26F0CBED0054C168 /* PurchaseUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseUnitTests.swift; sourceTree = "<group>"; };
+		2C6F929D26F0CBED0054C168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesViewController.swift; sourceTree = "<group>"; };
 		2CC336D726D4016700FA85FC /* SubCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesView.swift; sourceTree = "<group>"; };
 		2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesModel.swift; sourceTree = "<group>"; };
@@ -102,6 +119,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		2C5AC32826B1BF6A00EFFDB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C6F929626F0CBED0054C168 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -243,9 +267,9 @@
 		2C5510BD26E7A7E90014BEF1 /* Multi */ = {
 			isa = PBXGroup;
 			children = (
+				2C6F92A926F1029B0054C168 /* Subviews */,
 				2C504A8226E570A7006A244C /* MultiViewController.swift */,
 				2C504A8426E5764F006A244C /* MultiView.swift */,
-				2C504A8626E5808A006A244C /* MultiTableViewCell.swift */,
 			);
 			path = Multi;
 			sourceTree = "<group>";
@@ -286,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				2C5AC32D26B1BF6A00EFFDB0 /* BlackStarShop_V2 */,
+				2C6F929A26F0CBED0054C168 /* PurchaseUnitTests */,
 				2C5AC32C26B1BF6A00EFFDB0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -294,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				2C5AC32B26B1BF6A00EFFDB0 /* BlackStarShop_V2.app */,
+				2C6F929926F0CBED0054C168 /* PurchaseUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -316,13 +342,30 @@
 			path = BlackStarShop_V2;
 			sourceTree = "<group>";
 		};
+		2C6F929A26F0CBED0054C168 /* PurchaseUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C6F929B26F0CBED0054C168 /* PurchaseUnitTests.swift */,
+				2C6F929D26F0CBED0054C168 /* Info.plist */,
+			);
+			path = PurchaseUnitTests;
+			sourceTree = "<group>";
+		};
+		2C6F92A926F1029B0054C168 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				2C504A8626E5808A006A244C /* MultiTableViewCell.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		2CC2C20C26C69E1A0053BD47 /* Purchase */ = {
 			isa = PBXGroup;
 			children = (
 				2CC2C20D26C69E5C0053BD47 /* SubViews */,
-				2C5AC34226B1C49D00EFFDB0 /* PurchaseViewController.swift */,
 				2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */,
 				2C5AC34426B1C5F700EFFDB0 /* PurchaseView.swift */,
+				2C5AC34226B1C49D00EFFDB0 /* PurchaseViewController.swift */,
 			);
 			path = Purchase;
 			sourceTree = "<group>";
@@ -366,6 +409,24 @@
 			productReference = 2C5AC32B26B1BF6A00EFFDB0 /* BlackStarShop_V2.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2C6F929826F0CBED0054C168 /* PurchaseUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C6F92A026F0CBED0054C168 /* Build configuration list for PBXNativeTarget "PurchaseUnitTests" */;
+			buildPhases = (
+				2C6F929526F0CBED0054C168 /* Sources */,
+				2C6F929626F0CBED0054C168 /* Frameworks */,
+				2C6F929726F0CBED0054C168 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C6F929F26F0CBED0054C168 /* PBXTargetDependency */,
+			);
+			name = PurchaseUnitTests;
+			productName = PurchaseUnitTests;
+			productReference = 2C6F929926F0CBED0054C168 /* PurchaseUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -377,6 +438,9 @@
 				ORGANIZATIONNAME = Norik;
 				TargetAttributes = {
 					2C5AC32A26B1BF6A00EFFDB0 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					2C6F929826F0CBED0054C168 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
 				};
@@ -395,6 +459,7 @@
 			projectRoot = "";
 			targets = (
 				2C5AC32A26B1BF6A00EFFDB0 /* BlackStarShop_V2 */,
+				2C6F929826F0CBED0054C168 /* PurchaseUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -406,6 +471,13 @@
 			files = (
 				2C5AC33826B1BF6D00EFFDB0 /* Assets.xcassets in Resources */,
 				2C53C7EA26F00B5A004C654A /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C6F929726F0CBED0054C168 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,7 +532,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2C6F929526F0CBED0054C168 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C6F92A726F0E2EC0054C168 /* InfoField.swift in Sources */,
+				2C6F92A626F0E2D80054C168 /* InfoFieldController.swift in Sources */,
+				2C6F92A526F0DDFB0054C168 /* PurchaseUnitTests.swift in Sources */,
+				2C6F92A826F0E3020054C168 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C6F929F26F0CBED0054C168 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C5AC32A26B1BF6A00EFFDB0 /* BlackStarShop_V2 */;
+			targetProxy = 2C6F929E26F0CBED0054C168 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2C53C7E826F00B5A004C654A /* LaunchScreen.storyboard */ = {
@@ -524,7 +615,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -578,7 +669,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -622,6 +713,42 @@
 			};
 			name = Release;
 		};
+		2C6F92A126F0CBED0054C168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PurchaseUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = APPS.PurchaseUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2C6F92A226F0CBED0054C168 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PurchaseUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = APPS.PurchaseUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -639,6 +766,15 @@
 			buildConfigurations = (
 				2C5AC34026B1BF6D00EFFDB0 /* Debug */,
 				2C5AC34126B1BF6D00EFFDB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C6F92A026F0CBED0054C168 /* Build configuration list for PBXNativeTarget "PurchaseUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C6F92A126F0CBED0054C168 /* Debug */,
+				2C6F92A226F0CBED0054C168 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

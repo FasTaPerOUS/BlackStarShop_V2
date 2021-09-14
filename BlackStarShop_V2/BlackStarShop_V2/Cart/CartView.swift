@@ -17,7 +17,7 @@ final class CartView: UIView {
     //MARK: - UI
     
     private lazy var itemsTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(CartsItemTableViewCell.self, forCellReuseIdentifier: "Item for cart")
         tableView.showsVerticalScrollIndicator = false

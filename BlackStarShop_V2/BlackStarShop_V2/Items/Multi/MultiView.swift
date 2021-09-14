@@ -25,7 +25,7 @@ final class MultiView: UIView {
     }()
     
     lazy var infoTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(MultiTableViewCell.self, forCellReuseIdentifier: "Multi cell")
         return tableView

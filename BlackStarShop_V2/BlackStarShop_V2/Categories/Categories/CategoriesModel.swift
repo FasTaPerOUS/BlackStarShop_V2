@@ -18,11 +18,7 @@ final class CategoriesModel {
     
     //MARK: - Init
     
-    init(info: [CompareIDCategory], completion: () -> ()) {
-        self.info = info
-        sended = Array(repeating: false, count: info.count)
-        completion()
-    }
+    init() {}
     
     //MARK: - Private Methods
     
@@ -32,6 +28,11 @@ final class CategoriesModel {
     
     //MARK: - Methods
 
+    func updateInfo(info: [CompareIDCategory]) {
+        self.info = info
+        sended = Array(repeating: false, count: info.count)
+    }
+    
     func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
         NetworkService().imageLoaderAsync(url:
         URL(string: String(mainURLString + info[indexPath.row].myStruct.iconImage))) { (image) in
