@@ -83,14 +83,20 @@ class DataStoreManager {
     
     //добавляется только когда выбираешь размер
     func addItem(item: OneItemWithAllColors, index: Int, size: String) {
+        //получаю массив товаров
         let items = getItems()
+        print("Вызван метод добавления товара в корзину")
         //проходимся по каждому товару, если есть совпадения по имени, цвету и размеру
         //то делаем +1 к количесту, сохраняем и завершаем функцию
         for el in items {
             if el.name == item.name && el.colorName == item.colorName[index]
                 && el.size == size {
+                print("До увеличения счетчика и сохранения")
+                print(items.map({ $0.quantity }))
                 el.quantity += 1
                 saveContext()
+                print("После увеличения счетчика и сохранения")
+                print(getItems().map({ $0.quantity }))
                 return
             }
         }

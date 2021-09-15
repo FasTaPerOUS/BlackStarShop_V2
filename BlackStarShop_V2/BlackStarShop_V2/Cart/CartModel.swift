@@ -32,6 +32,8 @@ final class CartModel {
     
     func updateModel() {
         info = dataStoreManager.getItems()
+        print("Обновляю список товаров")
+        print(info.map({ $0.quantity }))
         images.removeAll()
         sended = Array(repeating: false, count: info.count)
     }
