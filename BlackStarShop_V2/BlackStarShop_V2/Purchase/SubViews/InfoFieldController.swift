@@ -41,7 +41,7 @@ final class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
     private func setupPropertiesAndChecker(type: InfoFieldType) {
         switch type {
         case .name:
-            setup(labelText: "Имя", textFieldPlaceholder: "Введите имя", checker: nameCheck, pattern: "^([а-яА-Я]{1,})?([ ][а-яА-Я]{1,}){0,}$")
+            setup(labelText: "Имя", textFieldPlaceholder: "Введите имя", checker: nameCheck, pattern: "^([а-яА-Я]{1,})([ ][а-яА-Я]{1,}){0,}$")
         case .email:
             setup(labelText: "Почта", textFieldPlaceholder: "Введите e-mail", checker: emailCheck)
         case .phone:
