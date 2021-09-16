@@ -47,7 +47,6 @@
 		2C5AC34D26B1DF4D00EFFDB0 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */; };
 		2C5E1F2D26B4784500925D3B /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */; };
 		2C6320AB26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */; };
-		2C6F92A526F0DDFB0054C168 /* PurchaseUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F929B26F0CBED0054C168 /* PurchaseUnitTests.swift */; };
 		2C6F92A626F0E2D80054C168 /* InfoFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5295B726C3306E00330F78 /* InfoFieldController.swift */; };
 		2C6F92A726F0E2EC0054C168 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */; };
 		2C6F92A826F0E3020054C168 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53C7BD26EFE126004C654A /* Extensions.swift */; };
@@ -110,8 +109,6 @@
 		2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInfoFromCategoriesToTableViewProtocol.swift; sourceTree = "<group>"; };
 		2C6F929926F0CBED0054C168 /* PurchaseUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PurchaseUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C6F929B26F0CBED0054C168 /* PurchaseUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseUnitTests.swift; sourceTree = "<group>"; };
-		2C6F929D26F0CBED0054C168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesViewController.swift; sourceTree = "<group>"; };
 		2CC336D726D4016700FA85FC /* SubCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesView.swift; sourceTree = "<group>"; };
 		2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesModel.swift; sourceTree = "<group>"; };
@@ -345,8 +342,6 @@
 		2C6F929A26F0CBED0054C168 /* PurchaseUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				2C6F929B26F0CBED0054C168 /* PurchaseUnitTests.swift */,
-				2C6F929D26F0CBED0054C168 /* Info.plist */,
 			);
 			path = PurchaseUnitTests;
 			sourceTree = "<group>";
@@ -538,7 +533,6 @@
 			files = (
 				2C6F92A726F0E2EC0054C168 /* InfoField.swift in Sources */,
 				2C6F92A626F0E2D80054C168 /* InfoFieldController.swift in Sources */,
-				2C6F92A526F0DDFB0054C168 /* PurchaseUnitTests.swift in Sources */,
 				2C6F92A826F0E3020054C168 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

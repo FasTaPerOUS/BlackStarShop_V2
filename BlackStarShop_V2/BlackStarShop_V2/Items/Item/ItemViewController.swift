@@ -29,7 +29,7 @@ final class ItemViewController: UIViewController {
     var currIndex = 0
     var currImageIndex = 0
     lazy var dataStoreManager: DataStoreManager = {
-        return DataStoreManager()
+        return AppDelegate.shared.dataStoreManager
     }()
     
     //MARK: - Init

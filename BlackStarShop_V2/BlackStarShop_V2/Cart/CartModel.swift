@@ -16,7 +16,7 @@ final class CartModel {
     var images = [IndexPath: UIImage?]()
     var sended = [Bool]()
     
-    let dataStoreManager = DataStoreManager()
+    let dataStoreManager = AppDelegate.shared.dataStoreManager
     
     //MARK: - Init
     
@@ -32,8 +32,6 @@ final class CartModel {
     
     func updateModel() {
         info = dataStoreManager.getItems()
-        print("Обновляю список товаров")
-        print(info.map({ $0.quantity }))
         images.removeAll()
         sended = Array(repeating: false, count: info.count)
     }

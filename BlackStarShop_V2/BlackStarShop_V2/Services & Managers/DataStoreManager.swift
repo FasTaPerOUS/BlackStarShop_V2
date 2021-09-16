@@ -54,6 +54,14 @@ class DataStoreManager {
         return items
     }
     
+    func getItems1(request: NSFetchRequest<ItemCD>) -> [ItemCD] {
+        guard let items = try? viewContext.fetch(request) else {
+            print("Problem in \(#file), \(#function)")
+            return []
+        }
+        return items
+    }
+    
     //MARK: - Core Data Changing
     
     func removeItems() {
@@ -84,6 +92,9 @@ class DataStoreManager {
     //добавляется только когда выбираешь размер
     func addItem(item: OneItemWithAllColors, index: Int, size: String) {
         //получаю массив товаров
+        let req = fetchRequest
+//        req.predicate = NSPredicate(format: "size = %@", size)
+//        let items = getItems1(request: req)
         let items = getItems()
         print("Вызван метод добавления товара в корзину")
         //проходимся по каждому товару, если есть совпадения по имени, цвету и размеру
@@ -91,12 +102,8 @@ class DataStoreManager {
         for el in items {
             if el.name == item.name && el.colorName == item.colorName[index]
                 && el.size == size {
-                print("До увеличения счетчика и сохранения")
-                print(items.map({ $0.quantity }))
                 el.quantity += 1
                 saveContext()
-                print("После увеличения счетчика и сохранения")
-                print(getItems().map({ $0.quantity }))
                 return
             }
         }
