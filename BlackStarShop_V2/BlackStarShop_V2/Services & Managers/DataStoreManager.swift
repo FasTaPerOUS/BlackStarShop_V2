@@ -2,7 +2,7 @@
 //  DataStoreManager.swift
 //  BlackStarShop_V2
 //
-//  Created by Norik on 08.09.2021.
+//  Created by Norik on 17.09.2021.
 //  Copyright © 2021 Norik. All rights reserved.
 //
 
@@ -12,7 +12,6 @@ import CoreData
 class DataStoreManager {
     
     // MARK: - Core Data stack
-
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ItemCD")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -32,7 +31,6 @@ class DataStoreManager {
     }()
     
     // MARK: - Core Data Saving
-
     func saveContext () {
         if viewContext.hasChanges {
             do {
@@ -54,14 +52,6 @@ class DataStoreManager {
         return items
     }
     
-    func getItems1(request: NSFetchRequest<ItemCD>) -> [ItemCD] {
-        guard let items = try? viewContext.fetch(request) else {
-            print("Problem in \(#file), \(#function)")
-            return []
-        }
-        return items
-    }
-    
     //MARK: - Core Data Changing
     
     func removeItems() {
@@ -77,56 +67,56 @@ class DataStoreManager {
     }
     
     //используется только когда жмешь на минусовую кнопку в корзине в ячейке
-    func updateQuantityOfItem(index: Int) {
-        guard let items = try? viewContext.fetch(fetchRequest) else {
-            print("Problem in \(#file), \(#function)")
+    func updateQuantityOfItem(name: String, color: String, size: String) {
+        //получаем нужный товар по критериям и уменьшаем его количество
+        fetchRequest.predicate = NSPredicate(format: "name = %@ AND colorName =%@ AND #size = %@", name, color, size)
+        let items = getItems()
+        fetchRequest.predicate = nil
+        guard let itemForChange = items.first else {
             return
         }
-        items[index].quantity -= 1
-        if items[index].quantity == 0 {
-            viewContext.delete(items[index])
-        }
+        itemForChange.quantity -= 1
         saveContext()
     }
     
     //добавляется только когда выбираешь размер
     func addItem(item: OneItemWithAllColors, index: Int, size: String) {
-        //получаю массив товаров
-        let req = fetchRequest
-//        req.predicate = NSPredicate(format: "size = %@", size)
-//        let items = getItems1(request: req)
+        //добавляю фильтр для получения товаров: совпадение по имени, цвету и размеру
+        //либо получу массив из 1 элемента, либо пустой массив
+        fetchRequest.predicate = NSPredicate(format: "name = %@ AND colorName =%@ AND #size = %@", item.name, item.colorName[index], size)
         let items = getItems()
-        print("Вызван метод добавления товара в корзину")
-        //проходимся по каждому товару, если есть совпадения по имени, цвету и размеру
-        //то делаем +1 к количесту, сохраняем и завершаем функцию
-        for el in items {
-            if el.name == item.name && el.colorName == item.colorName[index]
-                && el.size == size {
-                el.quantity += 1
-                saveContext()
-                return
+        fetchRequest.predicate = nil
+        //проверка на наличие первого элемента
+        guard let itemForChange = items.first else {
+            //создаем новый элемент и сохраняем его
+            let newItem = ItemCD(context: viewContext)
+            newItem.colorName = item.colorName[index]
+            newItem.name = item.name
+            newItem.quantity = 1
+            newItem.size = size
+            newItem.mainImageURL = item.mainImage[index]
+            newItem.currPrice = Int32(item.price[index]) ?? -1
+            newItem.oldPrice = Int32(item.oldPrice[index]) ?? -1
+            newItem.tag = item.tag[index]
+            newItem.descript = item.description
+            newItem.productImagesURL = item.productImages[index].map {
+                return $0.imageURL
             }
+            saveContext()
+            return
         }
-        //добавляем ПОЛНОСТЬЮ новый товар и сохраняем его
-        let newItem = ItemCD(context: viewContext)
-        newItem.colorName = item.colorName[index]
-        newItem.name = item.name
-        newItem.quantity = 1
-        newItem.size = size
-        newItem.mainImageURL = item.mainImage[index]
-        newItem.currPrice = Int32(item.price[index]) ?? -1
-        newItem.oldPrice = Int32(item.oldPrice[index]) ?? -1
-        newItem.tag = item.tag[index]
-        newItem.descript = item.description
-        newItem.productImagesURL = item.productImages[index].map {
-            return $0.imageURL
-        }
+        //делаем +1 к количеству и сохраняем
+        itemForChange.quantity += 1
         saveContext()
     }
     
-    func deleteItem(at index: Int) {
-        let items = getItems()
-        viewContext.delete(items[index])
+    func deleteItem(name: String, color: String, size: String) {
+        //получаем нужный товар по критериям и удаляем его
+        fetchRequest.predicate = NSPredicate(format: "name = %@ AND colorName =%@ AND #size = %@", name, color, size)
+        let _ = getItems().map {
+            viewContext.delete($0)
+        }
+        fetchRequest.predicate = nil
         saveContext()
     }
 }

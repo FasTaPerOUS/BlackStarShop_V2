@@ -34,6 +34,10 @@ final class CartViewController: UIViewController {
     var myView: CartView?
     var model: CartModel?
     
+    //MARK: - Properties
+    
+    var boof = [ItemCD]()
+    
     //MARK: - Init
     
     init() {
@@ -59,8 +63,20 @@ final class CartViewController: UIViewController {
         super.viewWillAppear(animated)
         udpateNavigationBarAndTabBarBackgroundColor(color: .mainColor)
         model?.updateModel()
-        myView?.updateLabelsText()
-        myView?.reloadData()
+        if isTableNeedsUpdating() {
+            boof = model?.info ?? []
+            myView?.updateLabelsText()
+            myView?.reloadData()
+        }
+    }
+    
+    //MARK: - Private Methods
+    
+    private func isTableNeedsUpdating() -> Bool {
+        if boof != model?.info {
+            return true
+        }
+        return false
     }
     
     //MARK: - Methods
@@ -169,14 +185,13 @@ extension CartViewController: ForCartTableViewProtocol {
     
     func deleteItem(at index: Int) {
         self.model?.deleteItem(at: index)
-        self.model?.updateModel()
-        self.myView?.reloadData()
+        boof = self.model?.updateModel() ?? []
         self.myView?.updateLabelsText()
     }
     
     func changeQuantity(at index: Int) {
         self.model?.changeQuantity(at: index)
-        self.model?.updateModel()
+        boof = self.model?.updateModel() ?? []
         self.myView?.updateLabelsText()
     }
 }

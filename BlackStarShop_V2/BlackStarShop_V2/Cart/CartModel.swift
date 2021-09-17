@@ -30,10 +30,11 @@ final class CartModel {
     
     //MARK: - Methods
     
-    func updateModel() {
+    func updateModel() -> [ItemCD] {
         info = dataStoreManager.getItems()
         images.removeAll()
         sended = Array(repeating: false, count: info.count)
+        return info
     }
     
     func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
@@ -52,10 +53,14 @@ final class CartModel {
     }
     
     func deleteItem(at index: Int) {
-        dataStoreManager.deleteItem(at: index)
+        dataStoreManager.deleteItem(name: info[index].name ?? "",
+                                    color: info[index].colorName ?? "",
+                                    size: info[index].size ?? "")
     }
     
     func changeQuantity(at index: Int) {
-        dataStoreManager.updateQuantityOfItem(index: index)
+        dataStoreManager.updateQuantityOfItem(name: info[index].name ?? "",
+                                              color: info[index].colorName ?? "",
+                                              size: info[index].size ?? "")
     }
 }
