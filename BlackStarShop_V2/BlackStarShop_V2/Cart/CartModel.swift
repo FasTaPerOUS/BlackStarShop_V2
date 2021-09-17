@@ -32,9 +32,12 @@ final class CartModel {
     
     func updateModel() -> [ItemCD] {
         info = dataStoreManager.getItems()
+        return info
+    }
+    
+    func deleteImages() {
         images.removeAll()
         sended = Array(repeating: false, count: info.count)
-        return info
     }
     
     func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {

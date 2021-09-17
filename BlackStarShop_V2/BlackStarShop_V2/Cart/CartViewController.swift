@@ -62,12 +62,13 @@ final class CartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         udpateNavigationBarAndTabBarBackgroundColor(color: .mainColor)
-        model?.updateModel()
+        let _ = model?.updateModel()
         if isTableNeedsUpdating() {
             boof = model?.info ?? []
-            myView?.updateLabelsText()
-            myView?.reloadData()
+            model?.deleteImages()
         }
+        myView?.updateLabelsText()
+        myView?.reloadData()
     }
     
     //MARK: - Private Methods
@@ -77,6 +78,18 @@ final class CartViewController: UIViewController {
             return true
         }
         return false
+    }
+    
+    private func tabBarSecondItemsBadgeChange(num: Int) {
+        guard let tabItems = tabBarController?.tabBar.items,
+            let tabItem = tabItems.last else {
+            return
+        }
+        let result = (Int(tabItem.badgeValue ?? "0") ?? 0) - num
+        if result < 1 {
+            tabItem.badgeValue = nil
+        }
+        tabItem.badgeValue = String(result)
     }
     
     //MARK: - Methods
@@ -184,12 +197,14 @@ extension CartViewController: ForCartTableViewProtocol {
     }
     
     func deleteItem(at index: Int) {
+        tabBarSecondItemsBadgeChange(num: Int(boof[index].quantity))
         self.model?.deleteItem(at: index)
         boof = self.model?.updateModel() ?? []
         self.myView?.updateLabelsText()
     }
     
     func changeQuantity(at index: Int) {
+        tabBarSecondItemsBadgeChange(num: 1)
         self.model?.changeQuantity(at: index)
         boof = self.model?.updateModel() ?? []
         self.myView?.updateLabelsText()
@@ -233,16 +248,23 @@ extension CartViewController: ForCartViewProtocol {
     }
     
     func removeAll() {
-        if countInfo() > 0 {
+        let all = countInfo()
+        if all > 0 {
             let alert = UIAlertController(title: "Очистить корзину", message: "Вы точно уверены что хотите очистить всю корзину?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Очистить", style: .default, handler: { _ in
                 self.model?.removeAll()
-                self.model?.updateModel()
+                let _ = self.model?.updateModel()
                 self.myView?.reloadData()
                 self.myView?.updateLabelsText()
+                guard let tabItems = self.tabBarController?.tabBar.items,
+                    let tabItem = tabItems.last else {
+                    return
+                }
+                tabItem.badgeValue = nil
             }))
             alert.addAction(UIAlertAction(title: "Отмена", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
+            
         }
     }
 }

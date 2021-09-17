@@ -60,6 +60,11 @@ final class MultiViewController: UIViewController {
                 guard let object = prevViewController?.model?.info,
                     let currIndex = prevViewController?.currIndex else { return }
                 prevViewController?.dataStoreManager.addItem(item: object, index: currIndex, size: info[index] ?? "")
+                guard let tabItems = prevViewController?.tabBarController?.tabBar.items,
+                    let tabItem = tabItems.last else {
+                    return
+                }
+                tabItem.badgeValue = String((Int(tabItem.badgeValue ?? "0") ?? 0) + 1)
             }
         }
     }

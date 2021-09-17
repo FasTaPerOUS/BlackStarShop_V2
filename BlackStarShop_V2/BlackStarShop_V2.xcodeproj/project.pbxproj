@@ -50,6 +50,7 @@
 		2CC0402F26F3EB9200D90399 /* ItemCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0402D26F3EB9200D90399 /* ItemCD+CoreDataClass.swift */; };
 		2CC0403026F3EB9200D90399 /* ItemCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0402E26F3EB9200D90399 /* ItemCD+CoreDataProperties.swift */; };
 		2CC0403226F3EC1200D90399 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0403126F3EC1200D90399 /* DataStoreManager.swift */; };
+		2CC0403426F424F400D90399 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0403326F424F400D90399 /* ActivityIndicator.swift */; };
 		2CC336D626D3D8B000FA85FC /* SubCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */; };
 		2CC336D826D4016700FA85FC /* SubCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D726D4016700FA85FC /* SubCategoriesView.swift */; };
 		2CC336DA26D40D3D00FA85FC /* SubCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */; };
@@ -109,6 +110,7 @@
 		2CC0402D26F3EB9200D90399 /* ItemCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemCD+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2CC0402E26F3EB9200D90399 /* ItemCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2CC0403126F3EC1200D90399 /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
+		2CC0403326F424F400D90399 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesViewController.swift; sourceTree = "<group>"; };
 		2CC336D726D4016700FA85FC /* SubCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesView.swift; sourceTree = "<group>"; };
 		2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesModel.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				2C53C7EB26F00BAF004C654A /* Services & Managers */,
 				2C5AC33726B1BF6D00EFFDB0 /* Assets.xcassets */,
 				2C5AC33C26B1BF6D00EFFDB0 /* Info.plist */,
+				2CC0403326F424F400D90399 /* ActivityIndicator.swift */,
 			);
 			path = BlackStarShop_V2;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				2C5AC34526B1C5F700EFFDB0 /* PurchaseView.swift in Sources */,
 				2C5510C026E7BA030014BEF1 /* ItemCD.xcdatamodeld in Sources */,
 				2C52189D26D96CCA003B6893 /* ItemsView.swift in Sources */,
+				2CC0403426F424F400D90399 /* ActivityIndicator.swift in Sources */,
 				2C5AC32F26B1BF6A00EFFDB0 /* AppDelegate.swift in Sources */,
 				2C5295B826C3306E00330F78 /* InfoFieldController.swift in Sources */,
 				2C5AC34D26B1DF4D00EFFDB0 /* InfoField.swift in Sources */,

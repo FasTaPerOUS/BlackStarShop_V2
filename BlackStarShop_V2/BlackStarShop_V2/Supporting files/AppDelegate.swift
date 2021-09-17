@@ -20,13 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         let firstController = CategoriesViewController()
         let firstControllerForTabBarController = UINavigationController(rootViewController: firstController)
-        firstControllerForTabBarController.title = "Магазин"
         firstControllerForTabBarController.navigationBar.barTintColor = .white
         let secondController = CartViewController()
         let secondControllerForTabBarController = UINavigationController(rootViewController: secondController)
-        secondControllerForTabBarController.title = "Корзина"
         secondControllerForTabBarController.navigationBar.barTintColor = .mainColor
         tabBarController.viewControllers = [firstControllerForTabBarController, secondControllerForTabBarController]
+        firstControllerForTabBarController.tabBarItem.image = UIImage(systemName: "cart")
+        secondControllerForTabBarController.tabBarItem.image = UIImage(systemName: "cart.fill")
+        var q = 0
+        let _ = dataStoreManager.getItems().map {
+            q += Int($0.quantity)
+        }
+        
+        if q > 0 {
+            secondControllerForTabBarController.tabBarItem.badgeValue = String(q)
+        }
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         return true
