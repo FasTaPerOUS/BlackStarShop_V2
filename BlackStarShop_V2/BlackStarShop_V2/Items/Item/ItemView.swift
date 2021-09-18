@@ -33,6 +33,7 @@ final class ItemView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(ItemCollectionViewCell.self, forCellWithReuseIdentifier: "Images for item")
         collectionView.backgroundColor = .white
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
@@ -255,7 +256,7 @@ final class ItemView: UIView {
     //MARK: - Methods
     
     func checkAndHideLeftRightButtons(index: Int) {
-        guard let quantity = viewController?.model?.images.count else {
+        guard let quantity = viewController?.countImages() else {
             return
         }
         if index == 0 {
@@ -286,6 +287,10 @@ final class ItemView: UIView {
         rightColorButton.setTitle(viewController?.getCurColor(), for: .normal)
     }
     
+    func reloadItems(indexPaths: [IndexPath]) {
+        imagesCollectionView.reloadItems(at: indexPaths)
+    }
+    
     func reloadData() {
         imagesCollectionView.reloadData()
     }
@@ -305,11 +310,33 @@ final class ItemView: UIView {
 
 //MARK: - UICollectionVIew Delegate, DataSource
 
-extension ItemView: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ItemView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching {
+    
+//    private func addDelegateAndDataSource() {
+//        imagesCollectionView.delegate = self
+//        imagesCollectionView.dataSource = self
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return viewController?.countImages() ?? 0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Images for item", for: indexPath) as? ItemCollectionViewCell else {
+//            return UICollectionViewCell()
+//        }
+//        cell.imageView.image = viewController?.getImage(index: indexPath.row)
+//        return cell
+//    }
+    
+    private func cleanCell(cell: ItemCollectionViewCell) {
+        cell.imageView.image = nil
+    }
     
     private func addDelegateAndDataSource() {
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
+        imagesCollectionView.prefetchDataSource = self
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -317,10 +344,19 @@ extension ItemView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Images for item", for: indexPath) as? ItemCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        cell.imageView.image = viewController?.getImage(index: indexPath.row)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Images for item", for: indexPath) as? ItemCollectionViewCell else { return UICollectionViewCell() }
+        cleanCell(cell: cell)
+        viewController?.getImage(indexPath: indexPath, completion: { (image) in
+            DispatchQueue.main.async {
+                cell.imageView.image = image
+            }
+        })
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            viewController?.getImage(indexPath: indexPath, completion: nil)
+        }
     }
 }

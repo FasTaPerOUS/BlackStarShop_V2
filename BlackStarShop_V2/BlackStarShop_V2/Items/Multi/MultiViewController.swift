@@ -47,14 +47,15 @@ final class MultiViewController: UIViewController {
     func delegate(index: Int) {
         if controllerType == "Color" {
             prevViewController?.currIndex = index
+            prevViewController?.changeImagesSelection(index: index)
             prevViewController?.currImageIndex = 0
-            prevViewController?.model?.imagesLoad(index: index, completion: {
+            DispatchQueue.main.async {
                 self.prevViewController?.myView?.reloadData()
                 self.prevViewController?.myView?.updatePriceLabel()
                 self.prevViewController?.myView?.updateColorsButtonTitle()
                 self.prevViewController?.myView?.scrollTo(index: 0, animated: false)
                 self.prevViewController?.myView?.checkAndHideLeftRightButtons(index: 0)
-            })
+            }
         } else {
             if controllerType == "Size" {
                 guard let object = prevViewController?.model?.info,

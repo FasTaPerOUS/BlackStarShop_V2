@@ -10,7 +10,7 @@ import UIKit
 
 protocol ItemViewProtocol {
     func countImages() -> Int
-    func getImage(index: Int) -> UIImage?
+    func getImage(indexPath: IndexPath, completion: ((UIImage) -> ())?)
     func getName() -> String?
     func getPrice() -> String?
     func getDescription() -> String?
@@ -55,12 +55,8 @@ final class ItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.model?.imagesLoad(index: self.currIndex) { [weak self] in
-                self?.myView?.configurateLeftRightButtons()
-                self?.myView?.reloadData()
-            }
-        }
+        model?.convert()
+        myView?.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,17 +92,44 @@ final class ItemViewController: UIViewController {
         let array = model?.info.offers[currIndex].map { return $0.size } ?? []
         presentController(string: array, type: "Size")
     }
+    
+    func changeImagesSelection(index: Int) {
+        model?.currIndex = index
+        model?.convert()
+    }
 }
 
 //MARK: - For myView
 
 extension ItemViewController: ItemViewProtocol {
-    func countImages() -> Int {
-        return model?.images.count ?? 0
+    
+    private func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
+        model?.getImageAsyncAndCache(indexPath: indexPath, completion: { (image) in
+            completion(image)
+        })
     }
     
-    func getImage(index: Int) -> UIImage? {
-        return model?.images[index]
+    func countImages() -> Int {
+        return 1 + (model?.info.productImages[currIndex].count ?? 0)
+    }
+    
+    func getImage(indexPath: IndexPath, completion: ((UIImage) -> ())?) {
+        guard let image = model?.images[indexPath], let resultImage = image else {
+            guard let checker = model?.sended[indexPath.row] else {
+                return
+            }
+            if !checker {
+                model?.sended[indexPath.row] = true
+                getImageAsyncAndCache(indexPath: indexPath) { _ in
+                    DispatchQueue.main.async {
+                        self.myView?.reloadItems(indexPaths: [indexPath])
+                    }
+                }
+            }
+            return
+        }
+        guard let comp = completion else { return }
+        comp(resultImage)
     }
     
     func getName() -> String? {

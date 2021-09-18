@@ -8,12 +8,12 @@
 
 import UIKit
 
-final class ItemModel {
+final class ItemModel: GetAndCacheImagesService {
     
     //MARK: Properties
     
     let info: OneItemWithAllColors
-    var images = [UIImage?]()
+    var currIndex = 0
     
     //MARK: - Init
     
@@ -23,20 +23,33 @@ final class ItemModel {
     
     //MARK: - Methods
     
-    func imagesLoad(index: Int, completion: @escaping () -> ()) {
-        images = []
-        let ns = NetworkService()
-        ns.imagesLoader(urls: [URL(string: mainURLString + info.mainImage[index])]) { [weak self] (image) in
-            self?.images = image
+    override func convert() {
+        imagesURL = [info.mainImage[currIndex]]
+        let _ = info.productImages[currIndex].map {
+            imagesURL.append($0.imageURL)
         }
-        var urls = [URL?]()
-        for url in info.productImages[index] {
-            urls.append(URL(string: mainURLString + url.imageURL))
-        }
-        ns.imagesLoaderAsync(urls: urls) { [weak self] (images) in
-            self?.images += images
-        }
-        completion()
+        createSendedArr()
     }
+    
+    func createSendedArr() {
+        images.removeAll()
+        sended = Array(repeating: false, count: imagesURL.count)
+    }
+    
+//    func imagesLoad(index: Int, completion: @escaping () -> ()) {
+//        images = []
+//        let ns = NetworkService()
+//        ns.imagesLoader(urls: [URL(string: mainURLString + info.mainImage[index])]) { [weak self] (image) in
+//            self?.images = image
+//        }
+//        var urls = [URL?]()
+//        for url in info.productImages[index] {
+//            urls.append(URL(string: mainURLString + url.imageURL))
+//        }
+//        ns.imagesLoaderAsync(urls: urls) { [weak self] (images) in
+//            self?.images += images
+//        }
+//        completion()
+//    }
     
 }
