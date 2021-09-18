@@ -53,7 +53,7 @@ final class SubCategoriesViewController: UIViewController {
     }
 }
 
-//for myView.categoriesTableView
+//MARK: - For myView.categoriesTableView
 extension SubCategoriesViewController: GetInfoFromCategoriesToTableViewProtocol {
     
     func countInfo() -> Int {
@@ -73,7 +73,7 @@ extension SubCategoriesViewController: GetInfoFromCategoriesToTableViewProtocol 
                 model?.sended[indexPath.row] = true
                 getImageAsyncAndCache(indexPath: indexPath) { _ in
                     DispatchQueue.main.async {
-                        self.myView?.categoriesTableView.reloadRows(at: [indexPath], with: .none)
+                        self.myView?.reloadCells(indexPaths: [indexPath])
                     }
                 }
             }

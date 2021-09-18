@@ -68,11 +68,12 @@ final class ItemsView: UIView {
     //MARK: - Private Methods
     
     @objc private func showCollectionView() {
-        UIView.animate(withDuration: 0.2) {
+        viewController?.loadAllItems()
+        UIView.animate(withDuration: 0.3) {
             self.notifyLabel.alpha = 0
             self.showCollectionViewButton.alpha = 0
         }
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.3) {
             self.itemsCollectionView.alpha = 1
         }
     }

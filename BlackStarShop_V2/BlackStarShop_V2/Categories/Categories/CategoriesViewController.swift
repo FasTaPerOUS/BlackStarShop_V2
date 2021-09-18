@@ -85,6 +85,12 @@ final class CategoriesViewController: UIViewController {
 
 extension CategoriesViewController: GetInfoFromCategoriesToTableViewProtocol {
     
+    private func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
+        model?.getImageAsyncAndCache(indexPath: indexPath, completion: { (image) in
+            completion(image)
+        })
+    }
+    
     func countInfo() -> Int {
         return model?.info.count ?? 0
     }
@@ -94,28 +100,21 @@ extension CategoriesViewController: GetInfoFromCategoriesToTableViewProtocol {
     }
     
     func getImage(indexPath: IndexPath, completion: ((UIImage) -> ())?) {
-           guard let image = model?.images[indexPath], let resultImage = image else {
-               guard let checker = model?.sended[indexPath.row] else {
-                   return
-               }
-               if !checker {
-                   model?.sended[indexPath.row] = true
-                   getImageAsyncAndCache(indexPath: indexPath) { _ in
-                       DispatchQueue.main.async {
-                           self.myView?.reloadCells(indexPaths: [indexPath])
-                       }
-                   }
-               }
-               return
-           }
-           guard let comp = completion else { return }
-           comp(resultImage)
-       }
-       
-       private func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
-           model?.getImageAsyncAndCache(indexPath: indexPath, completion: { (image) in
-               completion(image)
-           })
-       }
-    
+        guard let image = model?.images[indexPath], let resultImage = image else {
+            guard let checker = model?.sended[indexPath.row] else {
+                return
+            }
+            if !checker {
+                model?.sended[indexPath.row] = true
+                getImageAsyncAndCache(indexPath: indexPath) { _ in
+                    DispatchQueue.main.async {
+                        self.myView?.reloadCells(indexPaths: [indexPath])
+                    }
+                }
+            }
+            return
+        }
+        guard let comp = completion else { return }
+        comp(resultImage)
+   }
 }

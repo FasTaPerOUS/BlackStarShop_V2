@@ -27,6 +27,7 @@ final class ItemsViewController: UIViewController {
     //MARK: - Properties
     
     var id: String?
+    var extraID: String?
     
     //MARK: - Init
     
@@ -35,8 +36,10 @@ final class ItemsViewController: UIViewController {
         title = "Товары"
         
         self.id = id
+        self.extraID = extraID
+        
         myView = ItemsView(viewController: self)
-        model = ItemsModel(extraID: extraID)
+        model = ItemsModel()
     }
     
     required init?(coder: NSCoder) {
@@ -71,6 +74,17 @@ final class ItemsViewController: UIViewController {
     
     func itemsIsEmpty() -> Bool {
         return model?.itemsWithAllColors.isEmpty ?? false
+    }
+    
+    func loadAllItems() {
+        guard let id = extraID, let url = URL(string: itemsURLString + id) else {
+            return
+        }
+        model?.getItems(url: url, closure: {
+            DispatchQueue.main.async {
+                self.myView?.reloadData()
+            }
+        })
     }
     
     func goToNextController(index: Int) {

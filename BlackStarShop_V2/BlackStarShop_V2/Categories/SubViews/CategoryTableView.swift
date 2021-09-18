@@ -53,4 +53,8 @@ class CategoryTableView: UIView {
     func reloadData() {
         categoriesTableView.reloadData()
     }
+    
+    func reloadCells(indexPaths: [IndexPath]) {
+        categoriesTableView.reloadRows(at: indexPaths, with: .fade)
+    }
 }

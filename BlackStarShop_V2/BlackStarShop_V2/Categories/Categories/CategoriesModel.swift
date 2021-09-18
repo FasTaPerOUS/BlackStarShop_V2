@@ -8,39 +8,25 @@
 
 import UIKit
 
-final class CategoriesModel {
+final class CategoriesModel: GetAndCacheImagesService {
     
     //MARK: - Properties
     
     var info = [CompareIDCategory]()
-    var images = [IndexPath: UIImage?]()
-    var sended = [Bool]()
     
     //MARK: - Init
     
-    init() {}
-    
-    //MARK: - Private Methods
-    
-    private func cacheImage(indexPath: IndexPath, image: UIImage) {
-        images[indexPath] = image
-    }
+    override init() {}
     
     //MARK: - Methods
 
-    func updateInfo(info: [CompareIDCategory]) {
-        self.info = info
-        sended = Array(repeating: false, count: info.count)
+    override func convert() {
+        imagesURL = info.map({ $0.myStruct.iconImage })
     }
     
-    func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
-        NetworkService().imageLoaderAsync(url:
-        URL(string: String(mainURLString + info[indexPath.row].myStruct.iconImage))) { (image) in
-            DispatchQueue.main.async {
-                let im: UIImage = image ?? UIImage(named: "No Logo") ?? UIImage()
-                self.cacheImage(indexPath: indexPath, image: im)
-                completion(im)
-            }
-        }
+    func updateInfo(info: [CompareIDCategory]) {
+        self.info = info
+        convert()
+        sended = Array(repeating: false, count: info.count)
     }
 }

@@ -8,47 +8,33 @@
 
 import UIKit
 
-final class CartModel {
+final class CartModel: GetAndCacheImagesService {
     
     //MARK: - Properties
     
     var info = [ItemCD]()
-    var images = [IndexPath: UIImage?]()
-    var sended = [Bool]()
     
     let dataStoreManager = AppDelegate.shared.dataStoreManager
     
     //MARK: - Init
     
-    init() {}
-    
-    //MARK: - Private Methods
-    
-    private func cacheImage(indexPath: IndexPath, image: UIImage?) {
-        images[indexPath] = image
-    }
+    override init() {}
     
     //MARK: - Methods
     
+    override func convert() {
+        imagesURL = info.map({ $0.mainImageURL ?? "" })
+    }
+    
     func updateModel() -> [ItemCD] {
         info = dataStoreManager.getItems()
+        convert()
         return info
     }
     
     func deleteImages() {
         images.removeAll()
         sended = Array(repeating: false, count: info.count)
-    }
-    
-    func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
-        NetworkService().imageLoaderAsync(url:
-        URL(string: String(mainURLString + (info[indexPath.row].mainImageURL ?? "")))) { (image) in
-            DispatchQueue.main.async {
-                let im: UIImage = image ?? UIImage(named: "No Logo") ?? UIImage()
-                self.cacheImage(indexPath: indexPath, image: im)
-                completion(im)
-            }
-        }
     }
     
     func removeAll() {
