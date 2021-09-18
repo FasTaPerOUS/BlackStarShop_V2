@@ -95,20 +95,20 @@ final class CartViewController: UIViewController {
     //MARK: - Methods
     
     func goToItemController(index: Int) {
-        let infoCD = model?.info[index]
-        let info = OneItemWithAllColors(name: infoCD?.name ?? "",
-                                        description: infoCD?.descript ?? "",
-                                        colorName: [infoCD?.colorName ?? ""],
+        guard let infoCD = model?.info[index],
+            let prImages = infoCD.productImagesURL else { return }
+        let info = OneItemWithAllColors(name: infoCD.name ?? "",
+                                        description: infoCD.descript ?? "",
+                                        colorName: [infoCD.colorName ?? ""],
                                         sortOrder: -404,
-                                        mainImage: [infoCD?.mainImageURL ?? ""],
-                                        productImages: [
-                                            [ProductImage(imageURL: infoCD?.mainImageURL ?? "",
-                                                                      sortOrder: -404)]
-                                        ],
+                                        mainImage: [(infoCD.mainImageURL ?? "")],
+                                        productImages: [prImages.map({ pr in
+                                            return ProductImage(imageURL: pr, sortOrder: -404)
+                                            })],
                                         offers: [],
-                                        price: [String(infoCD?.currPrice ?? -404)],
-                                        oldPrice: [String(infoCD?.oldPrice ?? -404)],
-                                        tag: [String(infoCD?.tag ?? "-404%")])
+                                        price: [String(infoCD.currPrice)],
+                                        oldPrice: [String(infoCD.oldPrice)],
+                                        tag: [String(infoCD.tag ?? "-404%")])
         let vc = ItemViewController(info: info)
         vc.myView?.hideAddButton()
         navigationController?.pushViewController(vc, animated: true)

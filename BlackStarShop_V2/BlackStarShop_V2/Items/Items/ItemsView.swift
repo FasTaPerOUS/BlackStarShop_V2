@@ -129,7 +129,7 @@ extension ItemsView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     private func cleanCell(cell: ItemsCollectionViewCell) {
         cell.nameLabel.text = nil
-        cell.imageView.image = nil
+        cell.photoImageView.image = nil
         cell.oldPriceLabel.attributedText = nil
         cell.curPriceLabel.text = nil
     }
@@ -152,7 +152,7 @@ extension ItemsView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         cell.curPriceLabel.text = (viewController?.getCurPrice(index: indexPath.row) ?? "") + "₽"
         viewController?.getImage(indexPath: indexPath, completion: { (image) in
             DispatchQueue.main.async {
-                cell.imageView.image = image
+                cell.photoImageView.image = image
             }
         })
         return cell

@@ -21,6 +21,7 @@ final class CartView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(CartsItemTableViewCell.self, forCellReuseIdentifier: "Item for cart")
         tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = .mainColor
         return tableView
     }()
     
@@ -197,9 +198,9 @@ extension CartView: UITableViewDataSource, UITableViewDelegate, UITableViewDataS
         cell.sizeLabel.text = viewController?.getSize(index: indexPath.row)
         cell.totalLabel.text = viewController?.getTotal(index: indexPath.row)
         cell.hideButton()
-        cell.minusButtonTicked = { cell in
-            self.viewController?.changeQuantity(at: indexPath.row)
-            cell.quantityLabel.text = self.viewController?.getQuantity(index: indexPath.row)
+        cell.minusButtonTicked = { [weak self] cell in
+            self?.viewController?.changeQuantity(at: indexPath.row)
+            cell.quantityLabel.text = self?.viewController?.getQuantity(index: indexPath.row)
             cell.hideButton()
         }
         return cell

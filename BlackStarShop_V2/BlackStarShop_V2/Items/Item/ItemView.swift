@@ -37,6 +37,13 @@ final class ItemView: UIView {
         return collectionView
     }()
     
+    private lazy var swipeAreaGestureRecogniserView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private var leftButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -128,6 +135,18 @@ final class ItemView: UIView {
         return label
     }()
     
+    private lazy var swipeLeftGestureRecogniser: UISwipeGestureRecognizer = {
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
+        gesture.direction = .left
+        return gesture
+    }()
+    
+    private lazy var swipeRightGestureRecogniser: UISwipeGestureRecognizer = {
+        let gesture = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
+        gesture.direction = .right
+        return gesture
+    }()
+    
     //MARK: - Init
     
     init(viewController: ItemViewController, colorsCount: Int) {
@@ -135,6 +154,7 @@ final class ItemView: UIView {
         super.init(frame: .zero)
         backgroundColor = .white
         addSubviews()
+        addSwipeGestures()
         setupConstraints(colorsCount: colorsCount)
         hideColorViews(colorsCount: colorsCount)
         updateMainLabels()
@@ -147,6 +167,26 @@ final class ItemView: UIView {
     }
     
     //MARK: - Private Methods
+    
+    @objc private func swipe(swipeGestureRecogniser: UISwipeGestureRecognizer) {
+        let nextIndex: Int
+        switch swipeGestureRecogniser.direction {
+        case .left:
+            if viewController?.currImageIndex == (viewController?.countImages() ?? 0) - 1 {
+                return
+            }
+            nextIndex = viewController?.increaseCurrImageIndex() ?? 0
+        case .right:
+            if viewController?.currImageIndex == 0 {
+                return
+            }
+            nextIndex = viewController?.decreaseCurrImageIndex() ?? 0
+        default:
+            return
+        }
+        scrollTo(index: nextIndex, animated: true)
+        checkAndHideLeftRightButtons(index: nextIndex)
+    }
     
     @objc private func leftClick() {
         guard let nextIndex = viewController?.decreaseCurrImageIndex() else { return }
@@ -170,9 +210,14 @@ final class ItemView: UIView {
     
     private func addSubviews() {
         addSubview(scrollView)
-        for view in [leftButton, imagesCollectionView, rightButton, nameLabel, separatorView, leftPriceLabel, rightPriceLabel, leftColorLabel, rightColorButton, addItemToCartButton, descriptionLabel] {
+        for view in [leftButton, imagesCollectionView, swipeAreaGestureRecogniserView, rightButton, nameLabel, separatorView, leftPriceLabel, rightPriceLabel, leftColorLabel, rightColorButton, addItemToCartButton, descriptionLabel] {
             scrollView.addSubview(view)
         }
+    }
+    
+    private func addSwipeGestures() {
+        swipeAreaGestureRecogniserView.addGestureRecognizer(swipeLeftGestureRecogniser)
+        swipeAreaGestureRecogniserView.addGestureRecognizer(swipeRightGestureRecogniser)
     }
     
     private func setupConstraints(colorsCount: Int) {
@@ -198,6 +243,11 @@ final class ItemView: UIView {
             imagesCollectionView.heightAnchor.constraint(equalTo: rightButton.heightAnchor),
             imagesCollectionView.leadingAnchor.constraint(equalTo: leftButton.trailingAnchor),
             imagesCollectionView.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor),
+            
+            swipeAreaGestureRecogniserView.leadingAnchor.constraint(equalTo: imagesCollectionView.leadingAnchor),
+            swipeAreaGestureRecogniserView.trailingAnchor.constraint(equalTo: imagesCollectionView.trailingAnchor),
+            swipeAreaGestureRecogniserView.topAnchor.constraint(equalTo: imagesCollectionView.topAnchor),
+            swipeAreaGestureRecogniserView.bottomAnchor.constraint(equalTo: imagesCollectionView.bottomAnchor),
             
             nameLabel.topAnchor.constraint(equalTo: imagesCollectionView.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
@@ -312,25 +362,8 @@ final class ItemView: UIView {
 
 extension ItemView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching {
     
-//    private func addDelegateAndDataSource() {
-//        imagesCollectionView.delegate = self
-//        imagesCollectionView.dataSource = self
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return viewController?.countImages() ?? 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Images for item", for: indexPath) as? ItemCollectionViewCell else {
-//            return UICollectionViewCell()
-//        }
-//        cell.imageView.image = viewController?.getImage(index: indexPath.row)
-//        return cell
-//    }
-    
     private func cleanCell(cell: ItemCollectionViewCell) {
-        cell.imageView.image = nil
+        cell.photoImageView.image = nil
     }
     
     private func addDelegateAndDataSource() {
@@ -348,7 +381,7 @@ extension ItemView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         cleanCell(cell: cell)
         viewController?.getImage(indexPath: indexPath, completion: { (image) in
             DispatchQueue.main.async {
-                cell.imageView.image = image
+                cell.photoImageView.image = image
             }
         })
         return cell

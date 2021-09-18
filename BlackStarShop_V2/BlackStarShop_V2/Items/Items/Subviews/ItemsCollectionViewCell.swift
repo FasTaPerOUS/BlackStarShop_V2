@@ -20,7 +20,7 @@ final class ItemsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var imageView: UIImageView = {
+    lazy var photoImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -55,7 +55,7 @@ final class ItemsCollectionViewCell: UICollectionViewCell {
     //MARK: - Private Methods
     
     private func addSubviews() {
-        for view in [nameLabel, imageView, oldPriceLabel, curPriceLabel] {
+        for view in [nameLabel, photoImageView, oldPriceLabel, curPriceLabel] {
             contentView.addSubview(view)
         }
     }
@@ -68,13 +68,13 @@ final class ItemsCollectionViewCell: UICollectionViewCell {
             nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             
-            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            imageView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 84/63),
+            photoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            photoImageView.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            photoImageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor, multiplier: 84/63),
             
-            curPriceLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            curPriceLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            curPriceLabel.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: 10),
+            curPriceLabel.trailingAnchor.constraint(equalTo: photoImageView.trailingAnchor),
             curPriceLabel.heightAnchor.constraint(equalTo: nameLabel.heightAnchor),
             
             oldPriceLabel.trailingAnchor.constraint(equalTo: curPriceLabel.leadingAnchor, constant: -5),
