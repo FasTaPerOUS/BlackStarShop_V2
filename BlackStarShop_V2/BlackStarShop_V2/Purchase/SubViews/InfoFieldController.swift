@@ -49,7 +49,7 @@ final class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
         case .city:
             setup(labelText: "Город", textFieldPlaceholder: "Введите город", checker: cityCheck)
         case .street:
-            setup(labelText: "Улица", textFieldPlaceholder: "Введите улицу", checker: streetCheck)
+            setup(labelText: "Улица", textFieldPlaceholder: "Введите улицу", checker: streetCheck, pattern: "^([а-яА-Я0-9]{1,})([ ][а-яА-Я0-9]{1,}){0,}$")
         case .house:
             setup(labelText: "Дом", textFieldPlaceholder: "Введите дом", checker: houseCheck, pattern: "^([1-9])([0-9]{0,})$")
         case .building:
@@ -98,7 +98,7 @@ final class InfoFieldController: UIViewController, InfoFieldCheckProtocol {
     }
     
     private func streetCheck() -> Bool {
-        return true
+        return isCorrectUsingReg()
     }
     
     private func houseCheck() -> Bool {
