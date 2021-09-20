@@ -107,6 +107,7 @@ final class PurchaseView: UIView {
         configuratePersonalStackView()
         configurateAddressStackView()
         configurateCityField()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIApplication.keyboardWillShowNotification, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -114,6 +115,17 @@ final class PurchaseView: UIView {
     }
     
     //MARK: - Private methods
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardHeight = keyboardFrame.cgRectValue.height
+            if !nameField.textField.isFirstResponder &&
+                !phoneField.textField.isFirstResponder &&
+                !emailField.textField.isFirstResponder {
+                scrollView.contentOffset = CGPoint(x: 0, y: keyboardHeight * (1.4 - CGFloat(Double(Int(UIScreen.main.bounds.height) / 800) * 0.3)))
+            }
+        }
+    }
     
     @objc private func nameEditingDidEnd() {
         viewController?.updateUserInfo(str: nameField.textField.text ?? "", key:
@@ -176,6 +188,9 @@ final class PurchaseView: UIView {
     @objc private func codeOfEntranceEditingDidEnd() {
         viewController?.updateUserInfo(str: codeOfEntranceField.textField.text ?? "", key:
         PurchaseInfoKeys.codeOfEntrance)
+        UIView.animate(withDuration: 0.3) {
+            self.scrollView.contentOffset.y = 200
+        }
         endEditing(true)
     }
     
@@ -284,6 +299,11 @@ final class PurchaseView: UIView {
             return
         }
         if a != "" {
+            if field != nameField && field != emailField && field != phoneField {
+                UIView.animate(withDuration: 0.3) {
+                    self.scrollView.contentOffset.y = 200
+                }
+            }
             endEditing(true)
         } else {
             field.textField.becomeFirstResponder()
