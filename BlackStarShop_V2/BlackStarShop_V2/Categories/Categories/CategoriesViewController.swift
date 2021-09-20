@@ -50,19 +50,19 @@ final class CategoriesViewController: UIViewController {
     
     private func takeInfoFromApi() {
         guard let url = URL(string: categoriesURLString) else { return }
-        NetworkService().categoriesLoad(url: url) { result in
+        NetworkService().categoriesLoad(url: url) { [weak self] result in
             switch result {
             case .success(let z):
                 DispatchQueue.main.async {
-                    self.model?.updateInfo(info: z)
-                    self.myView?.reloadData()
+                    self?.model?.updateInfo(info: z)
+                    self?.myView?.reloadData()
                 }
             case .failure(let err):
                 let alert = UIAlertController(title: err.description.0, message: err.description.1, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Обновить", style: .default, handler: { _ in
-                    self.takeInfoFromApi()
+                    self?.takeInfoFromApi()
                 }))
-                self.present(alert, animated: true, completion: nil)
+                self?.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -106,9 +106,9 @@ extension CategoriesViewController: GetInfoFromCategoriesToTableViewProtocol {
             }
             if !checker {
                 model?.sended[indexPath.row] = true
-                getImageAsyncAndCache(indexPath: indexPath) { _ in
+                getImageAsyncAndCache(indexPath: indexPath) { [weak self] _ in
                     DispatchQueue.main.async {
-                        self.myView?.reloadCells(indexPaths: [indexPath])
+                        self?.myView?.reloadCells(indexPaths: [indexPath])
                     }
                 }
             }

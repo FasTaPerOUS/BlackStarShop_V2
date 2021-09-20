@@ -57,7 +57,7 @@ final class ItemsModel: GetAndCacheImagesService {
         imagesURL = itemsWithAllColors.map({ ($0.mainImage.first ?? "") })
     }
     
-    func getItems(url: URL, closure: @escaping () -> ()) {
+    func getItems(url: URL, closure: @escaping ((Errors)?) -> ()) {
         NetworkService().itemsLoad(url: url) { [weak self] (result) in
             switch result {
             case .success(let arr):
@@ -68,10 +68,10 @@ final class ItemsModel: GetAndCacheImagesService {
                 self?.creatingItemsForCollection()
                 self?.sended = Array(repeating: false, count: self?.itemsWithAllColors.count ?? 0)
                 self?.convert()
-                closure()
+                closure(nil)
             case .failure(let err):
                 print(err.localizedDescription)
-                closure()
+                closure(err)
             }
         }
     }

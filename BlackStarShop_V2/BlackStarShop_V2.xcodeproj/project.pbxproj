@@ -286,8 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				2C6F92A926F1029B0054C168 /* Subviews */,
-				2C504A8226E570A7006A244C /* MultiViewController.swift */,
 				2C504A8426E5764F006A244C /* MultiView.swift */,
+				2C504A8226E570A7006A244C /* MultiViewController.swift */,
 			);
 			path = Multi;
 			sourceTree = "<group>";

@@ -120,9 +120,9 @@ extension ItemViewController: ItemViewProtocol {
             }
             if !checker {
                 model?.sended[indexPath.row] = true
-                getImageAsyncAndCache(indexPath: indexPath) { _ in
+                getImageAsyncAndCache(indexPath: indexPath) { [weak self] _ in
                     DispatchQueue.main.async {
-                        self.myView?.reloadItems(indexPaths: [indexPath])
+                        self?.myView?.reloadItems(indexPaths: [indexPath])
                     }
                 }
             }

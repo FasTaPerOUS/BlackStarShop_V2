@@ -71,9 +71,9 @@ extension SubCategoriesViewController: GetInfoFromCategoriesToTableViewProtocol 
             }
             if !checker {
                 model?.sended[indexPath.row] = true
-                getImageAsyncAndCache(indexPath: indexPath) { _ in
+                getImageAsyncAndCache(indexPath: indexPath) { [weak self] _ in
                     DispatchQueue.main.async {
-                        self.myView?.reloadCells(indexPaths: [indexPath])
+                        self?.myView?.reloadCells(indexPaths: [indexPath])
                     }
                 }
             }

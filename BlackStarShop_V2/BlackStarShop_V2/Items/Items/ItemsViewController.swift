@@ -55,19 +55,32 @@ final class ItemsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let id = id, let url = URL(string: itemsURLString + id) else {
+        takeInfoFromApi(searchID: id)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.barTintColor = .white
+    }
+    
+    //MARK: - Private Methods
+    
+    private func takeInfoFromApi(searchID: String?) {
+        guard let mID = searchID, let url = URL(string: itemsURLString + mID) else {
             return
         }
-        model?.getItems(url: url, closure: { [weak self] in
+        model?.getItems(url: url, closure: { [weak self] error in
+            if error != nil {
+                let alert = UIAlertController(title: error!.description.0, message: error!.description.1, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Обновить", style: .default, handler: { _ in
+                    self?.takeInfoFromApi(searchID: mID)
+                }))
+                self?.present(alert, animated: true, completion: nil)
+            }
             DispatchQueue.main.async {
                 self?.myView?.reloadData()
                 self?.myView?.configurateView()
             }
         })
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.tabBar.barTintColor = .white
     }
     
     //MARK: - Methods
@@ -77,14 +90,7 @@ final class ItemsViewController: UIViewController {
     }
     
     func loadAllItems() {
-        guard let id = extraID, let url = URL(string: itemsURLString + id) else {
-            return
-        }
-        model?.getItems(url: url, closure: {
-            DispatchQueue.main.async {
-                self.myView?.reloadData()
-            }
-        })
+        takeInfoFromApi(searchID: extraID)
     }
     
     func goToNextController(index: Int) {
@@ -120,9 +126,9 @@ extension ItemsViewController: ItemsViewProtocol {
             }
             if !checker {
                 model?.sended[indexPath.row] = true
-                getImageAsyncAndCache(indexPath: indexPath) { _ in
+                getImageAsyncAndCache(indexPath: indexPath) { [weak self] _ in
                     DispatchQueue.main.async {
-                        self.myView?.reloadItems(indexPaths: [indexPath])
+                        self?.myView?.reloadItems(indexPaths: [indexPath])
                     }
                 }
             }

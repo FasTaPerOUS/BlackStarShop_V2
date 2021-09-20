@@ -110,14 +110,41 @@ final class NetworkService {
     
     //MARK: - ItemsLoader
     
-    func itemsLoad(url: URL, completion: @escaping (Result<ItemsWithID, Error>) -> Void) {
+    func itemsLoad(url: URL, completion: @escaping (Result<ItemsWithID, Errors>) -> Void) {
         URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
-            guard let data = data else { return }
+            if error != nil {
+                completion(.failure(Errors.errorNotNil(str: "Ошибка")))
+                return
+            }
+            guard let data = data else {
+                completion(.failure(Errors.dataProblem(str: "Проблема с датой")))
+                return
+            }
+            guard let httpRresponse = response as? HTTPURLResponse else {
+                completion(.failure(Errors.responseNil(str: "Response Error")))
+                return
+            }
+            
+            switch httpRresponse.statusCode {
+            case 100...199:
+                completion(.failure(Errors.informationCode(str: "Информационная проблема")))
+                return
+            case 300...399:
+                completion(.failure(Errors.redirectCode(str: "Перенаправления какие-то")))
+                return
+            case 400...499:
+                completion(.failure(Errors.clientErrorCode(str: "Клиентская проблема")))
+                return
+            case 500...599:
+                completion(.failure(Errors.serverErrorCode(str: "Серверу плохо")))
+                return
+            default: break
+            }
             let decoder = JSONDecoder()
             do {
                 completion(.success(try decoder.decode(ItemsWithID.self, from: data)))
             } catch {
-                completion(.failure(error))
+                completion(.failure(Errors.POOP))
             }
         }).resume()
     }

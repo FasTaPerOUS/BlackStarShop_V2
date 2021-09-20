@@ -23,10 +23,10 @@ class GetAndCacheImagesService: ConverterForGetAndCacheImagesServiceProtocol {
     
     func getImageAsyncAndCache(indexPath: IndexPath, completion: @escaping (UIImage) -> ()) {
         NetworkService().imageLoaderAsync(url:
-        URL(string: String(mainURLString + imagesURL[indexPath.row]))) { (image) in
+        URL(string: String(mainURLString + imagesURL[indexPath.row]))) { [weak self] (image) in
             DispatchQueue.main.async {
                 let im: UIImage = image ?? UIImage(named: "No Logo") ?? UIImage()
-                self.cacheImage(indexPath: indexPath, image: im)
+                self?.cacheImage(indexPath: indexPath, image: im)
                 completion(im)
             }
         }
