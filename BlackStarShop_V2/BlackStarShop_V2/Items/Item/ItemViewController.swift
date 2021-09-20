@@ -69,7 +69,7 @@ final class ItemViewController: UIViewController {
     
     private func presentController(string: [String?], type: String) {
         let vc = MultiViewController(info: string , current: self, str: type)
-        present(vc, animated: true, completion: nil)
+        show(vc, sender: nil)
     }
     
     //MARK: - Methods

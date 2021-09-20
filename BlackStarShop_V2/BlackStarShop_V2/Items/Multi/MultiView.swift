@@ -116,8 +116,8 @@ extension MultiView: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         byeTitleText()
         viewController?.delegate(index: indexPath.row)
-        UIView.animate(withDuration: 0.5, animations: { self.titleLabel.alpha = 0 }) { (f) in
-            self.viewController?.dismiss(animated: f, completion: nil)
+        UIView.animate(withDuration: 0.5, animations: { self.titleLabel.alpha = 0 }) { [weak self] (f) in
+            self?.viewController?.navigationController?.popViewController(animated: f)
         }
     }
 }
