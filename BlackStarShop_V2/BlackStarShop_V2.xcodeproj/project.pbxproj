@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -45,20 +45,29 @@
 		2C5AC34D26B1DF4D00EFFDB0 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */; };
 		2C5E1F2D26B4784500925D3B /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */; };
 		2C6320AB26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */; };
-		2C6F92A626F0E2D80054C168 /* InfoFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5295B726C3306E00330F78 /* InfoFieldController.swift */; };
-		2C6F92A726F0E2EC0054C168 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */; };
-		2C6F92A826F0E3020054C168 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53C7BD26EFE126004C654A /* Extensions.swift */; };
+		2C774E0426F80BC7005D9FB9 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C774E0326F80BC7005D9FB9 /* Page.swift */; };
+		2C774E0626F8C807005D9FB9 /* CategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C774E0526F8C807005D9FB9 /* CategoryScreen.swift */; };
+		2C774E0826F8CA17005D9FB9 /* CartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C774E0726F8CA17005D9FB9 /* CartScreen.swift */; };
+		2C774E0A26F8CAFE005D9FB9 /* PurchaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C774E0926F8CAFE005D9FB9 /* PurchaseScreen.swift */; };
+		2C9C9A5626F786B20020A9B7 /* BlackStarShop_V2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C9A5526F786B20020A9B7 /* BlackStarShop_V2UITests.swift */; };
+		2C9C9A5F26F787A70020A9B7 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 2C9C9A5E26F787A70020A9B7 /* SnapshotTesting */; };
+		2C9C9A6126F78A590020A9B7 /* PurchaseViewControllerSnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C9A6026F78A590020A9B7 /* PurchaseViewControllerSnapshotTest.swift */; };
+		2C9C9A6226F78CB20020A9B7 /* PurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */; };
+		2C9C9A6326F78CB50020A9B7 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34426B1C5F700EFFDB0 /* PurchaseView.swift */; };
+		2C9C9A6426F78CB80020A9B7 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34226B1C49D00EFFDB0 /* PurchaseViewController.swift */; };
+		2C9C9A6526F78CBB0020A9B7 /* InfoFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5295B726C3306E00330F78 /* InfoFieldController.swift */; };
+		2C9C9A6626F78CBD0020A9B7 /* InfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */; };
+		2C9C9A6726F78D130020A9B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53C7BD26EFE126004C654A /* Extensions.swift */; };
 		2CC0402F26F3EB9200D90399 /* ItemCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0402D26F3EB9200D90399 /* ItemCD+CoreDataClass.swift */; };
 		2CC0403026F3EB9200D90399 /* ItemCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0402E26F3EB9200D90399 /* ItemCD+CoreDataProperties.swift */; };
 		2CC0403226F3EC1200D90399 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0403126F3EC1200D90399 /* DataStoreManager.swift */; };
-		2CC0403426F424F400D90399 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0403326F424F400D90399 /* ActivityIndicator.swift */; };
 		2CC336D626D3D8B000FA85FC /* SubCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */; };
 		2CC336D826D4016700FA85FC /* SubCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D726D4016700FA85FC /* SubCategoriesView.swift */; };
 		2CC336DA26D40D3D00FA85FC /* SubCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2C6F929E26F0CBED0054C168 /* PBXContainerItemProxy */ = {
+		2C9C9A5826F786B20020A9B7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C5AC32326B1BF6A00EFFDB0 /* Project object */;
 			proxyType = 1;
@@ -108,11 +117,17 @@
 		2C5AC34C26B1DF4D00EFFDB0 /* InfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoField.swift; sourceTree = "<group>"; };
 		2C5E1F2C26B4784500925D3B /* PurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseModel.swift; sourceTree = "<group>"; };
 		2C6320AA26D027BA000073FC /* GetInfoFromCategoriesToTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInfoFromCategoriesToTableViewProtocol.swift; sourceTree = "<group>"; };
-		2C6F929926F0CBED0054C168 /* PurchaseUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PurchaseUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C774E0326F80BC7005D9FB9 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		2C774E0526F8C807005D9FB9 /* CategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreen.swift; sourceTree = "<group>"; };
+		2C774E0726F8CA17005D9FB9 /* CartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreen.swift; sourceTree = "<group>"; };
+		2C774E0926F8CAFE005D9FB9 /* PurchaseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseScreen.swift; sourceTree = "<group>"; };
+		2C9C9A5326F786B20020A9B7 /* BlackStarShop_V2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlackStarShop_V2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C9C9A5526F786B20020A9B7 /* BlackStarShop_V2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackStarShop_V2UITests.swift; sourceTree = "<group>"; };
+		2C9C9A5726F786B20020A9B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C9C9A6026F78A590020A9B7 /* PurchaseViewControllerSnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewControllerSnapshotTest.swift; sourceTree = "<group>"; };
 		2CC0402D26F3EB9200D90399 /* ItemCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemCD+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2CC0402E26F3EB9200D90399 /* ItemCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2CC0403126F3EC1200D90399 /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
-		2CC0403326F424F400D90399 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		2CC336D526D3D8B000FA85FC /* SubCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesViewController.swift; sourceTree = "<group>"; };
 		2CC336D726D4016700FA85FC /* SubCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesView.swift; sourceTree = "<group>"; };
 		2CC336D926D40D3C00FA85FC /* SubCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesModel.swift; sourceTree = "<group>"; };
@@ -126,10 +141,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2C6F929626F0CBED0054C168 /* Frameworks */ = {
+		2C9C9A5026F786B20020A9B7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C9C9A5F26F787A70020A9B7 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +329,7 @@
 			children = (
 				2C5AC32D26B1BF6A00EFFDB0 /* BlackStarShop_V2 */,
 				2C6F929A26F0CBED0054C168 /* PurchaseUnitTests */,
+				2C9C9A5426F786B20020A9B7 /* BlackStarShop_V2UITests */,
 				2C5AC32C26B1BF6A00EFFDB0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -321,7 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				2C5AC32B26B1BF6A00EFFDB0 /* BlackStarShop_V2.app */,
-				2C6F929926F0CBED0054C168 /* PurchaseUnitTests.xctest */,
+				2C9C9A5326F786B20020A9B7 /* BlackStarShop_V2UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -340,7 +357,6 @@
 				2C53C7EB26F00BAF004C654A /* Services & Managers */,
 				2C5AC33726B1BF6D00EFFDB0 /* Assets.xcassets */,
 				2C5AC33C26B1BF6D00EFFDB0 /* Info.plist */,
-				2CC0403326F424F400D90399 /* ActivityIndicator.swift */,
 			);
 			path = BlackStarShop_V2;
 			sourceTree = "<group>";
@@ -358,6 +374,44 @@
 				2C504A8626E5808A006A244C /* MultiTableViewCell.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		2C774E0B26F8D1C9005D9FB9 /* ScreensForUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2C774E0326F80BC7005D9FB9 /* Page.swift */,
+				2C774E0526F8C807005D9FB9 /* CategoryScreen.swift */,
+				2C774E0726F8CA17005D9FB9 /* CartScreen.swift */,
+				2C774E0926F8CAFE005D9FB9 /* PurchaseScreen.swift */,
+			);
+			path = ScreensForUITests;
+			sourceTree = "<group>";
+		};
+		2C774E0C26F8D202005D9FB9 /* SnapshotTest */ = {
+			isa = PBXGroup;
+			children = (
+				2C9C9A6026F78A590020A9B7 /* PurchaseViewControllerSnapshotTest.swift */,
+			);
+			path = SnapshotTest;
+			sourceTree = "<group>";
+		};
+		2C774E0D26F8D2D2005D9FB9 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				2C774E0B26F8D1C9005D9FB9 /* ScreensForUITests */,
+				2C9C9A5526F786B20020A9B7 /* BlackStarShop_V2UITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		2C9C9A5426F786B20020A9B7 /* BlackStarShop_V2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				2C774E0D26F8D2D2005D9FB9 /* UITests */,
+				2C774E0C26F8D202005D9FB9 /* SnapshotTest */,
+				2C9C9A5726F786B20020A9B7 /* Info.plist */,
+			);
+			path = BlackStarShop_V2UITests;
 			sourceTree = "<group>";
 		};
 		2CC2C20C26C69E1A0053BD47 /* Purchase */ = {
@@ -410,23 +464,26 @@
 			productReference = 2C5AC32B26B1BF6A00EFFDB0 /* BlackStarShop_V2.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2C6F929826F0CBED0054C168 /* PurchaseUnitTests */ = {
+		2C9C9A5226F786B20020A9B7 /* BlackStarShop_V2UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C6F92A026F0CBED0054C168 /* Build configuration list for PBXNativeTarget "PurchaseUnitTests" */;
+			buildConfigurationList = 2C9C9A5C26F786B20020A9B7 /* Build configuration list for PBXNativeTarget "BlackStarShop_V2UITests" */;
 			buildPhases = (
-				2C6F929526F0CBED0054C168 /* Sources */,
-				2C6F929626F0CBED0054C168 /* Frameworks */,
-				2C6F929726F0CBED0054C168 /* Resources */,
+				2C9C9A4F26F786B20020A9B7 /* Sources */,
+				2C9C9A5026F786B20020A9B7 /* Frameworks */,
+				2C9C9A5126F786B20020A9B7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2C6F929F26F0CBED0054C168 /* PBXTargetDependency */,
+				2C9C9A5926F786B20020A9B7 /* PBXTargetDependency */,
 			);
-			name = PurchaseUnitTests;
-			productName = PurchaseUnitTests;
-			productReference = 2C6F929926F0CBED0054C168 /* PurchaseUnitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = BlackStarShop_V2UITests;
+			packageProductDependencies = (
+				2C9C9A5E26F787A70020A9B7 /* SnapshotTesting */,
+			);
+			productName = BlackStarShop_V2UITests;
+			productReference = 2C9C9A5326F786B20020A9B7 /* BlackStarShop_V2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -441,8 +498,9 @@
 					2C5AC32A26B1BF6A00EFFDB0 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
-					2C6F929826F0CBED0054C168 = {
+					2C9C9A5226F786B20020A9B7 = {
 						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 2C5AC32A26B1BF6A00EFFDB0;
 					};
 				};
 			};
@@ -455,12 +513,15 @@
 				Base,
 			);
 			mainGroup = 2C5AC32226B1BF6A00EFFDB0;
+			packageReferences = (
+				2C9C9A5D26F787A70020A9B7 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = 2C5AC32C26B1BF6A00EFFDB0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				2C5AC32A26B1BF6A00EFFDB0 /* BlackStarShop_V2 */,
-				2C6F929826F0CBED0054C168 /* PurchaseUnitTests */,
+				2C9C9A5226F786B20020A9B7 /* BlackStarShop_V2UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -475,7 +536,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2C6F929726F0CBED0054C168 /* Resources */ = {
+		2C9C9A5126F786B20020A9B7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,7 +554,6 @@
 				2C5AC34526B1C5F700EFFDB0 /* PurchaseView.swift in Sources */,
 				2C5510C026E7BA030014BEF1 /* ItemCD.xcdatamodeld in Sources */,
 				2C52189D26D96CCA003B6893 /* ItemsView.swift in Sources */,
-				2CC0403426F424F400D90399 /* ActivityIndicator.swift in Sources */,
 				2C5AC32F26B1BF6A00EFFDB0 /* AppDelegate.swift in Sources */,
 				2C5295B826C3306E00330F78 /* InfoFieldController.swift in Sources */,
 				2C5AC34D26B1DF4D00EFFDB0 /* InfoField.swift in Sources */,
@@ -535,23 +595,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2C6F929526F0CBED0054C168 /* Sources */ = {
+		2C9C9A4F26F786B20020A9B7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C6F92A726F0E2EC0054C168 /* InfoField.swift in Sources */,
-				2C6F92A626F0E2D80054C168 /* InfoFieldController.swift in Sources */,
-				2C6F92A826F0E3020054C168 /* Extensions.swift in Sources */,
+				2C9C9A6426F78CB80020A9B7 /* PurchaseViewController.swift in Sources */,
+				2C9C9A5626F786B20020A9B7 /* BlackStarShop_V2UITests.swift in Sources */,
+				2C774E0A26F8CAFE005D9FB9 /* PurchaseScreen.swift in Sources */,
+				2C9C9A6526F78CBB0020A9B7 /* InfoFieldController.swift in Sources */,
+				2C9C9A6726F78D130020A9B7 /* Extensions.swift in Sources */,
+				2C9C9A6226F78CB20020A9B7 /* PurchaseModel.swift in Sources */,
+				2C774E0826F8CA17005D9FB9 /* CartScreen.swift in Sources */,
+				2C774E0426F80BC7005D9FB9 /* Page.swift in Sources */,
+				2C9C9A6126F78A590020A9B7 /* PurchaseViewControllerSnapshotTest.swift in Sources */,
+				2C9C9A6326F78CB50020A9B7 /* PurchaseView.swift in Sources */,
+				2C9C9A6626F78CBD0020A9B7 /* InfoField.swift in Sources */,
+				2C774E0626F8C807005D9FB9 /* CategoryScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2C6F929F26F0CBED0054C168 /* PBXTargetDependency */ = {
+		2C9C9A5926F786B20020A9B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2C5AC32A26B1BF6A00EFFDB0 /* BlackStarShop_V2 */;
-			targetProxy = 2C6F929E26F0CBED0054C168 /* PBXContainerItemProxy */;
+			targetProxy = 2C9C9A5826F786B20020A9B7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -715,39 +784,41 @@
 			};
 			name = Release;
 		};
-		2C6F92A126F0CBED0054C168 /* Debug */ = {
+		2C9C9A5A26F786B20020A9B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = PurchaseUnitTests/Info.plist;
+				INFOPLIST_FILE = BlackStarShop_V2UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = APPS.PurchaseUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "APPS.BlackStarShop-V2UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BlackStarShop_V2;
 			};
 			name = Debug;
 		};
-		2C6F92A226F0CBED0054C168 /* Release */ = {
+		2C9C9A5B26F786B20020A9B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = PurchaseUnitTests/Info.plist;
+				INFOPLIST_FILE = BlackStarShop_V2UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = APPS.PurchaseUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "APPS.BlackStarShop-V2UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BlackStarShop_V2;
 			};
 			name = Release;
 		};
@@ -772,16 +843,35 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C6F92A026F0CBED0054C168 /* Build configuration list for PBXNativeTarget "PurchaseUnitTests" */ = {
+		2C9C9A5C26F786B20020A9B7 /* Build configuration list for PBXNativeTarget "BlackStarShop_V2UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2C6F92A126F0CBED0054C168 /* Debug */,
-				2C6F92A226F0CBED0054C168 /* Release */,
+				2C9C9A5A26F786B20020A9B7 /* Debug */,
+				2C9C9A5B26F786B20020A9B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2C9C9A5D26F787A70020A9B7 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2C9C9A5E26F787A70020A9B7 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C9C9A5D26F787A70020A9B7 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2C5510BE26E7BA030014BEF1 /* ItemCD.xcdatamodeld */ = {

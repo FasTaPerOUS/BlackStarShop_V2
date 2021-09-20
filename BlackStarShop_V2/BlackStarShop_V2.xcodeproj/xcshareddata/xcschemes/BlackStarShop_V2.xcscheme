@@ -49,6 +49,16 @@
                ReferencedContainer = "container:BlackStarShop_V2.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2C9C9A5226F786B20020A9B7"
+               BuildableName = "BlackStarShop_V2UITests.xctest"
+               BlueprintName = "BlackStarShop_V2UITests"
+               ReferencedContainer = "container:BlackStarShop_V2.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
